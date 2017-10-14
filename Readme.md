@@ -49,6 +49,7 @@ ISBN: 9781788394185
 
 ### Contact Form
 <img width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/contact.gif">
+
 #### Topics Covered
 * Isomorphic Forms
 * Reusing Validation Logic
@@ -57,6 +58,7 @@ ISBN: 9781788394185
 
 ### Live Clock
 <img width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/liveclock.gif">
+
 #### Topics Covered
 * Cogs: Reusable Components
 * The Virtual Dom
