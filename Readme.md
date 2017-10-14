@@ -6,3 +6,11 @@ This is the official source code repository for the Isomorphic Go book published
 
 ISBN: 9781788394185
 
+
+
+
+## Carousel
+
+<video width="540" height="360" autoplay>
+  <source src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/carousel.mp4" type="video/mp4">
+</video>
