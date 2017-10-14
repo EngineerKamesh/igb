@@ -6,7 +6,7 @@ This is the official source code repository for the Isomorphic Go book published
 
 ISBN: 9781788394185
 
-## The stuff we will build in this book:
+## The solutions you will learn how to build in this book:
 
 ### Live Chat (with a bot)
 <img border="1" width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/livechat.gif">
@@ -57,7 +57,7 @@ ISBN: 9781788394185
 * Implementing Rest API Endpoints
 
 ### Live Clock
-<img border="1" width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/liveclock.gif">
+<img border="1" width="360" height="180" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/liveclock.gif">
 
 #### Topics Covered
 * Cogs: Reusable Components
