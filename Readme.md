@@ -9,21 +9,21 @@ ISBN: 9781788394185
 ## The stuff we will build in this book:
 
 ### Live Chat (with a bot)
-<img width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/livechat.gif">
+<img border="1" width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/livechat.gif">
 
 #### Topics Covered
 * Real-Time Web Applications
 * Communicating over a WebSocket connection
 
 ### Carousel
-<img width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/carousel.gif">
+<img border="1" width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/carousel.gif">
 
 #### Topics Covered
 * Cogs: Reusable Components
 * Building a Hybrid Cog (Go + JavaScript)
 
 ### Products 
-<img width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/products.gif">
+<img border="1" width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/products.gif">
 
 #### Topics Covered
 * End to End Application Routing
@@ -32,14 +32,14 @@ ISBN: 9781788394185
 * Implementing Rest API Endpoints
 
 ### Shopping Cart 
-<img width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/shoppingcart.gif">	
+<img border="1" width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/shoppingcart.gif">	
 
 #### Topics Covered
 * Isomorphic Handoff
 * Implementing Rest API Endpoints
 
 ### About
-<img width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/about.gif">
+<img border="1" width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/about.gif">
 
 #### Topics Covered
 * Isomorphic Template Rendering
@@ -48,7 +48,7 @@ ISBN: 9781788394185
 * Implementing Rest API Endpoints
 
 ### Contact Form
-<img width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/contact.gif">
+<img border="1" width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/contact.gif">
 
 #### Topics Covered
 * Isomorphic Forms
@@ -57,7 +57,7 @@ ISBN: 9781788394185
 * Implementing Rest API Endpoints
 
 ### Live Clock
-<img width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/liveclock.gif">
+<img border="1" width="360" src="https://raw.githubusercontent.com/EngineerKamesh/igb/master/assets/videos/liveclock.gif">
 
 #### Topics Covered
 * Cogs: Reusable Components
