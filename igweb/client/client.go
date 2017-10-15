@@ -73,8 +73,6 @@ func registerRoutes(env *common.Env) {
 	env.Router = r
 }
 
-//r.Handle("/live-chat", handlers.ChatHandler(env))
-
 func run() {
 	println("IGWEB Client Application")
 	templateSetChannel := make(chan *isokit.TemplateSet)
