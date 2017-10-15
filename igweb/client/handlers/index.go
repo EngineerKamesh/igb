@@ -61,7 +61,7 @@ func InitializeIndexEventHandlers(env *common.Env) {
 	hawaii.SetID("hawaiiLiveClock")
 	hawaii.SetProp("timeLabel", "Hawaii")
 	hawaii.SetProp("timezoneName", "HDT")
-	hawaii.SetProp("timezoneOffset", int(-9.0*3600))
+	hawaii.SetProp("timezoneOffset", int(-10.0*3600))
 	hawaii.Render()
 	hawaii.Start()
 
