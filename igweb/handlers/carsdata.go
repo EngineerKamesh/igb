@@ -8,15 +8,14 @@ import (
 	"log"
 	"net/http"
 
-	"gophercon.in/model"
-
 	"github.com/EngineerKamesh/igb/igweb/common"
+	"github.com/EngineerKamesh/igb/igweb/shared/models"
 )
 
 func CarsDataHandler(env *common.Env) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
-		var cars []model.Car
+		var cars []models.Car
 		var carsDataBuffer bytes.Buffer
 
 		dec := gob.NewDecoder(&carsDataBuffer)
