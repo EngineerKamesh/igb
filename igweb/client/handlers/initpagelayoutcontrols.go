@@ -6,7 +6,7 @@ import (
 	"honnef.co/go/js/dom"
 )
 
-func InitializeDefaultHandlers(env *common.Env) {
+func InitializePageLayoutControls(env *common.Env) {
 
 	chatbox := env.Document.GetElementByID("chatbox")
 

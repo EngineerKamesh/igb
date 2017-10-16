@@ -25,7 +25,7 @@ func AboutHandler(env *common.Env) isokit.Handler {
 		gophers := <-gopherTeamChannel
 		templateData := templatedata.About{PageTitle: "About", Gophers: gophers}
 		env.TemplateSet.Render("about_content", &isokit.RenderParams{Data: templateData, Disposition: isokit.PlacementReplaceInnerContents, Element: env.PrimaryContent, PageTitle: templateData.PageTitle})
-		InitializeAboutEventHandlers(env)
+		InitializeAboutPage(env)
 	})
 }
 
@@ -42,7 +42,7 @@ func FetchGopherTeam(gopherTeamChannel chan []*models.Gopher) {
 	gopherTeamChannel <- gophers
 }
 
-func InitializeAboutEventHandlers(env *common.Env) {
+func InitializeAboutPage(env *common.Env) {
 
 	humanReadableDivs := env.Document.GetElementsByClassName("humanReadableDate")
 	for _, div := range humanReadableDivs {

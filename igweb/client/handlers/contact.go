@@ -78,7 +78,7 @@ func ContactFormSubmissionRequest(contactFormErrorsChannel chan map[string]strin
 	contactFormErrorsChannel <- contactFormErrors
 }
 
-func InitializeContactFormEventHandlers(env *common.Env, contactForm *forms.ContactForm) {
+func InitializeContactPage(env *common.Env, contactForm *forms.ContactForm) {
 
 	formElement := env.Document.GetElementByID("contactForm").(*dom.HTMLFormElement)
 	contactForm.SetFormParams(&isokit.FormParams{FormElement: formElement})
@@ -102,5 +102,5 @@ func InitializeContactFormEventHandlers(env *common.Env, contactForm *forms.Cont
 func DisplayContactForm(env *common.Env, contactForm *forms.ContactForm) {
 	templateData := &templatedata.Contact{PageTitle: "Contact", Form: contactForm}
 	env.TemplateSet.Render("contact_content", &isokit.RenderParams{Data: templateData, Disposition: isokit.PlacementReplaceInnerContents, Element: env.PrimaryContent, PageTitle: templateData.PageTitle})
-	InitializeContactFormEventHandlers(env, contactForm)
+	InitializeContactPage(env, contactForm)
 }

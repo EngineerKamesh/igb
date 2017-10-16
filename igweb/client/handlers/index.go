@@ -14,11 +14,11 @@ func IndexHandler(env *common.Env) isokit.Handler {
 	return isokit.HandlerFunc(func(ctx context.Context) {
 		templateData := templatedata.Index{PageTitle: "IGWEB"}
 		env.TemplateSet.Render("index_content", &isokit.RenderParams{Data: templateData, Disposition: isokit.PlacementReplaceInnerContents, Element: env.PrimaryContent, PageTitle: templateData.PageTitle})
-		InitializeIndexEventHandlers(env)
+		InitializeIndexPage(env)
 	})
 }
 
-func InitializeIndexEventHandlers(env *common.Env) {
+func InitializeIndexPage(env *common.Env) {
 
 	// Carousel Cog
 	c := carousel.NewCarousel()

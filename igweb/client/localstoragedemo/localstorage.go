@@ -8,7 +8,7 @@ import (
 var localStorage = js.Global.Get("localStorage")
 var D = dom.GetWindow().Document().(dom.HTMLDocument)
 
-func InitializeEventHandlers() {
+func InitializePage() {
 	saveButton := D.GetElementByID("saveButton").(*dom.HTMLButtonElement)
 	saveButton.AddEventListener("click", false, func(event dom.Event) {
 		Save()

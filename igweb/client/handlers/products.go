@@ -21,7 +21,7 @@ func ProductsHandler(env *common.Env) isokit.Handler {
 		products := <-productsChannel
 		templateData := &templatedata.Products{PageTitle: "Products", Products: products}
 		env.TemplateSet.Render("products_content", &isokit.RenderParams{Data: templateData, Disposition: isokit.PlacementReplaceInnerContents, Element: env.PrimaryContent, PageTitle: templateData.PageTitle})
-		InitializeProductsEventHandlers(env)
+		InitializeProductsPage(env)
 		env.Router.RegisterLinks("#primaryContent a")
 	})
 }
@@ -39,7 +39,7 @@ func FetchProducts(productsChannel chan []*models.Product) {
 	productsChannel <- products
 }
 
-func InitializeProductsEventHandlers(env *common.Env) {
+func InitializeProductsPage(env *common.Env) {
 
 	buttons := env.Document.GetElementsByClassName("addToCartButton")
 	for _, button := range buttons {

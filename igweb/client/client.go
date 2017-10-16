@@ -2,6 +2,7 @@ package main
 
 import (
 	"html/template"
+	"log"
 	"strings"
 
 	"github.com/isomorphicgo/isokit"
@@ -16,49 +17,51 @@ import (
 	"github.com/EngineerKamesh/igb/igweb/shared/templatefuncs"
 )
 
-func initializeEventHandlers(env *common.Env) {
+func initializePage(env *common.Env) {
 
 	l := strings.Split(env.Window.Location().Pathname, "/")
-	pageName := l[1]
+	routeName := l[1]
 
-	if pageName == "" {
-		pageName = "index"
+	if routeName == "" {
+		routeName = "index"
 	}
 
-	switch pageName {
+	if strings.Contains(routeName, "-demo") == false {
+		handlers.InitializePageLayoutControls(env)
+	}
 
-	case "front-end-examples":
-		gopherjsprimer.InitializeEventHandlers()
+	switch routeName {
+
+	case "front-end-examples-demo":
+		gopherjsprimer.InitializePage()
 
 	case "cars-demo":
 		carsdemo.InitializePage()
 
 	case "localstorage-demo":
-		localstoragedemo.InitializeEventHandlers()
+		localstoragedemo.InitializePage()
 
 	case "index":
-		handlers.InitializeDefaultHandlers(env)
-		handlers.InitializeIndexEventHandlers(env)
+		handlers.InitializeIndexPage(env)
 
 	case "about":
-		handlers.InitializeDefaultHandlers(env)
-		handlers.InitializeAboutEventHandlers(env)
+		handlers.InitializeAboutPage(env)
 
 	case "products":
-		handlers.InitializeDefaultHandlers(env)
-		handlers.InitializeProductsEventHandlers(env)
+		handlers.InitializeProductsPage(env)
 
 	case "product-detail":
-		handlers.InitializeProductDetailEventHandlers(env)
+		handlers.InitializeProductDetailPage(env)
 
 	case "shopping-cart":
-		handlers.InitializeDefaultHandlers(env)
-		handlers.InitializeShoppingCartEventHandlers(env)
+		handlers.InitializeShoppingCartPage(env)
 
 	case "contact":
 		contactForm := forms.NewContactForm(nil)
-		handlers.InitializeContactFormEventHandlers(env, contactForm)
+		handlers.InitializeContactPage(env, contactForm)
 
+	default:
+		log.Println("Encountered unknown route name: ", routeName)
 	}
 }
 
@@ -92,7 +95,7 @@ func run() {
 	env.PrimaryContent = env.Document.GetElementByID("primaryContent")
 
 	registerRoutes(&env)
-	initializeEventHandlers(&env)
+	initializePage(&env)
 
 }
 

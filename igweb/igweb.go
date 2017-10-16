@@ -64,7 +64,7 @@ func main() {
 	r.Handle("/template-bundle", handlers.TemplateBundleHandler(&env))
 
 	// Register Request Handlers for GopherJS Examples
-	r.Handle("/front-end-examples", handlers.FrontEndExamplesHandler(&env)).Methods("GET")
+	r.Handle("/front-end-examples-demo", handlers.FrontEndExamplesHandler(&env)).Methods("GET")
 	r.Handle("/cars-demo", handlers.CarsDemoHandler(&env)).Methods("GET")
 	r.Handle("/cars-data", handlers.CarsDataHandler(&env)).Methods("POST")
 	r.Handle("/localstorage-demo", handlers.LocalStorageDemoHandler(&env)).Methods("GET")

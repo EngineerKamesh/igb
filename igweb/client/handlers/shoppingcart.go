@@ -34,7 +34,7 @@ func renderShoppingCartItems(env *common.Env) {
 	products := <-productsChannel
 	templateData := &templatedata.ShoppingCart{PageTitle: "Shopping Cart", Products: products}
 	env.TemplateSet.Render("shopping_cart_content", &isokit.RenderParams{Data: templateData, Disposition: isokit.PlacementReplaceInnerContents, Element: env.PrimaryContent, PageTitle: templateData.PageTitle})
-	InitializeShoppingCartEventHandlers(env)
+	InitializeShoppingCartPage(env)
 	env.Router.RegisterLinks("#primaryContent a")
 }
 
@@ -51,7 +51,7 @@ func fetchProductsInShoppingCart(productsChannel chan []*models.Product) {
 	productsChannel <- products
 }
 
-func InitializeShoppingCartEventHandlers(env *common.Env) {
+func InitializeShoppingCartPage(env *common.Env) {
 
 	buttons := env.Document.GetElementsByClassName("removeFromCartButton")
 	for _, button := range buttons {
