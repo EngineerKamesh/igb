@@ -7,6 +7,7 @@ import (
 	"github.com/isomorphicgo/isokit"
 	"honnef.co/go/js/dom"
 
+	"github.com/EngineerKamesh/igb/igweb/client/carsdemo"
 	"github.com/EngineerKamesh/igb/igweb/client/common"
 	"github.com/EngineerKamesh/igb/igweb/client/gopherjsprimer"
 	"github.com/EngineerKamesh/igb/igweb/client/handlers"
@@ -14,8 +15,6 @@ import (
 	"github.com/EngineerKamesh/igb/igweb/shared/forms"
 	"github.com/EngineerKamesh/igb/igweb/shared/templatefuncs"
 )
-
-var D = dom.GetWindow().Document().(dom.HTMLDocument)
 
 func initializeEventHandlers(env *common.Env) {
 
@@ -30,6 +29,9 @@ func initializeEventHandlers(env *common.Env) {
 
 	case "front-end-examples":
 		gopherjsprimer.InitializeEventHandlers()
+
+	case "cars-demo":
+		carsdemo.InitializePage()
 
 	case "localstorage-demo":
 		localstoragedemo.InitializeEventHandlers()
@@ -95,6 +97,8 @@ func run() {
 }
 
 func main() {
+
+	var D = dom.GetWindow().Document().(dom.HTMLDocument)
 	switch readyState := D.ReadyState(); readyState {
 	case "loading":
 		D.AddEventListener("DOMContentLoaded", false, func(dom.Event) {
