@@ -22,35 +22,34 @@ import (
 	"github.com/isomorphicgo/isokit"
 )
 
-var WebAppRoot string = os.Getenv("IGWEB_APP_ROOT")
+var WebAppRoot string
+var WebServerPort string
+var TemplateFilesPath string
+var StaticAssetsPath string
 
 // initializeTemplateset is responsible for initializing the template set on the server-side
 func initializeTemplateSet(env *common.Env) {
-
 	isokit.WebAppRoot = WebAppRoot
-	isokit.TemplateFilesPath = WebAppRoot + "/shared/templates"
-	isokit.StaticAssetsPath = WebAppRoot + "/static"
+	isokit.TemplateFilesPath = TemplateFilesPath
+	isokit.StaticAssetsPath = StaticAssetsPath
 	ts := isokit.NewTemplateSet()
 	funcMap := template.FuncMap{"rubyformat": templatefuncs.RubyDate, "unixformat": templatefuncs.UnixTime}
 	ts.Funcs = funcMap
 	ts.GatherTemplates()
-	initializeCogs(ts)
 	env.TemplateSet = ts
-
 }
 
 // initializeDatastore is responsible for initializing the datastore for our web application's data persistence needs
 func initializeDatastore(env *common.Env) {
 	db, err := datastore.NewDatastore(datastore.REDIS, "localhost:6379")
 	if err != nil {
-		log.Fatalf("Could not connect to the Redis Datastore! Encountered this error when attempting to create a datastore instance: ", err)
+		log.Fatalf("Could not connect to the Redis Datastore! Encountered the following error when attempting to create a datastore instance: ", err)
 	}
 	env.DB = db
 }
 
-// initializeCogs takes care of initializing all the cogs that we will be using in the web app
+// initializeCogs is responsible for initializing all the cogs that will be used in the web app
 func initializeCogs(ts *isokit.TemplateSet) {
-
 	liveclock.NewLiveClock().CogInit(ts)
 	timeago.NewTimeAgo().CogInit(ts)
 	datepicker.NewDatePicker().CogInit(ts)
@@ -58,10 +57,9 @@ func initializeCogs(ts *isokit.TemplateSet) {
 	isokit.BundleStaticAssets()
 }
 
-// startChatHub is responsible for starting the chat hub used in the live chat feature
+// startChatHub is responsible for starting the chat hub used for the live chat feature
 func startChatHub(hub *chat.Hub) {
 	go hub.Run()
-
 }
 
 // registerRoutes is responsible for regisetering the server-side request handlers
@@ -114,6 +112,7 @@ func main() {
 	env := common.Env{}
 	initializeTemplateSet(&env)
 	initializeDatastore(&env)
+	initializeCogs(env.TemplateSet)
 
 	hub := chat.NewHub()
 	startChatHub(hub)
@@ -122,10 +121,25 @@ func main() {
 	registerRoutes(&env, r, hub)
 
 	// Register Request Handler for Static Assetcs
-	fs := http.FileServer(http.Dir(WebAppRoot + "/static"))
+	fs := http.FileServer(http.Dir(StaticAssetsPath))
 	http.Handle("/static/", http.StripPrefix("/static", fs))
 
 	http.Handle("/", r)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":"+WebServerPort, nil)
+
+}
+
+func init() {
+
+	WebAppRoot = os.Getenv("IGWEB_APP_ROOT")
+	WebServerPort = os.Getenv("IGWEB_SERVER_PORT")
+
+	// Set the default web server port if it hasn't been set already
+	if WebServerPort == "" {
+		WebServerPort = "8080"
+	}
+
+	TemplateFilesPath = WebAppRoot + "/shared/templates"
+	StaticAssetsPath = WebAppRoot + "/static"
 
 }
