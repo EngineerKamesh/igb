@@ -80,9 +80,9 @@ func registerRoutes(env *common.Env) {
 
 func run() {
 	println("IGWEB Client Application")
-	templateSetChannel := make(chan *isokit.TemplateSet)
 
 	// Fetch the template set
+	templateSetChannel := make(chan *isokit.TemplateSet)
 	funcMap := template.FuncMap{"rubyformat": templatefuncs.RubyDate, "unixformat": templatefuncs.UnixTime}
 	go isokit.FetchTemplateBundleWithSuppliedFunctionMap(templateSetChannel, funcMap)
 	ts := <-templateSetChannel
