@@ -32,8 +32,6 @@ func cars() {
 	omni := models.Car{ModelName: "Omni", Color: "Red", Manufacturer: "Maruti Suzuki"}
 	cars := []models.Car{nano, ambassador, omni}
 
-	println("Cars Template Example")
-
 	autoTableBody := D.GetElementByID("autoTableBody")
 	for i := 0; i < len(cars); i++ {
 		trElement := D.CreateElement("tr")
