@@ -30,7 +30,7 @@ func StartLiveChat(env *common.Env) {
 	agentInfo["AgentTitle"] = "Resident Isomorphic Gopher Agent"
 
 	chatContainer := env.Document.GetElementByID("chatboxContainer").(*dom.HTMLDivElement)
-	env.TemplateSet.Render("partials/chatbox", &isokit.RenderParams{Data: agentInfo, Disposition: isokit.PlacementReplaceInnerContents, Element: chatContainer})
+	env.TemplateSet.Render("partials/chatbox_partial", &isokit.RenderParams{Data: agentInfo, Disposition: isokit.PlacementReplaceInnerContents, Element: chatContainer})
 
 	InitializeChatEventHandlers(env)
 
@@ -45,7 +45,7 @@ func UpdateChatBox(env *common.Env, message string, sender string) {
 	m["Name"] = sender
 	m["Message"] = message
 	conversationContainer := env.Document.GetElementByID("chatboxConversationContainer").(*dom.HTMLDivElement)
-	env.TemplateSet.Render("partials/livechatmsg", &isokit.RenderParams{Data: m, Disposition: isokit.PlacementAppendTo, Element: conversationContainer})
+	env.TemplateSet.Render("partials/livechatmsg_partial", &isokit.RenderParams{Data: m, Disposition: isokit.PlacementAppendTo, Element: conversationContainer})
 	scrollHeight := conversationContainer.Underlying().Get("scrollHeight")
 	conversationContainer.Underlying().Set("scrollTop", scrollHeight)
 }
