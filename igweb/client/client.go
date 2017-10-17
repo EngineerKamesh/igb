@@ -82,21 +82,19 @@ func run() {
 	println("IGWEB Client Application")
 	templateSetChannel := make(chan *isokit.TemplateSet)
 
+	// Fetch the template set
 	funcMap := template.FuncMap{"rubyformat": templatefuncs.RubyDate, "unixformat": templatefuncs.UnixTime}
-
 	go isokit.FetchTemplateBundleWithSuppliedFunctionMap(templateSetChannel, funcMap)
 	ts := <-templateSetChannel
 
 	env := common.Env{}
 	env.TemplateSet = ts
-
 	env.Window = dom.GetWindow()
 	env.Document = dom.GetWindow().Document()
 	env.PrimaryContent = env.Document.GetElementByID("primaryContent")
 
 	registerRoutes(&env)
 	initializePage(&env)
-
 }
 
 func main() {
