@@ -30,15 +30,12 @@ func AboutHandler(env *common.Env) isokit.Handler {
 }
 
 func FetchGopherTeam(gopherTeamChannel chan []*models.Gopher) {
-
 	data, err := xhr.Send("GET", "/restapi/get-gopher-team", nil)
 	if err != nil {
 		println("Encountered error: ", err)
-		println(err)
 	}
 	var gophers []*models.Gopher
 	json.NewDecoder(strings.NewReader(string(data))).Decode(&gophers)
-
 	gopherTeamChannel <- gophers
 }
 

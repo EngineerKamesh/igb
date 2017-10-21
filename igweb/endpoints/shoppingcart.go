@@ -30,11 +30,13 @@ func GetShoppingCartItemsEndpoint(env *common.Env) http.Handler {
 			}
 
 			products := env.DB.GetProductsInShoppingCart(cart)
+			w.Header().Set("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(products)
 
 		} else {
 			// Shopping cart doesn't exist in session
 			cart = nil
+			w.Header().Set("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(cart)
 			return
 		}
@@ -69,6 +71,7 @@ func AddItemToShoppingCartEndpoint(env *common.Env) http.Handler {
 
 		cart.AddItem(m["productSKU"])
 		b := new(bytes.Buffer)
+		w.Header().Set("Content-Type", "application/json")
 		err = json.NewEncoder(b).Encode(cart)
 		if err != nil {
 			log.Print("Encountered error when attempting to encode cart struct as json data: ", err)
@@ -111,6 +114,7 @@ func RemoveItemFromShoppingCartEndpoint(env *common.Env) http.Handler {
 		}
 
 		b := new(bytes.Buffer)
+		w.Header().Set("Content-Type", "application/json")
 		err = json.NewEncoder(b).Encode(cart)
 		if err != nil {
 			log.Print("Encountered error when attempting to encode cart struct as json data: ", err)

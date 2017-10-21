@@ -108,7 +108,7 @@ func main() {
 	case "interactive", "complete":
 		run()
 	default:
-		println("Unexpected document.ReadyState value!")
+		println("Encountered unexpected document ready state value!")
 	}
 
 }

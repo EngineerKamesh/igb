@@ -68,9 +68,9 @@ func registerRoutes(env *common.Env, r *mux.Router, hub *chat.Hub) {
 	r.Handle("/config/load-sample-data", handlers.LoadSampleDataHandler(env)).Methods("GET")
 
 	// Register Handlers for Client-Side Application
-	r.Handle("/js/client.js", isokit.GopherjsScriptHandler(WebAppRoot))
-	r.Handle("/js/client.js.map", isokit.GopherjsScriptMapHandler(WebAppRoot))
-	r.Handle("/template-bundle", handlers.TemplateBundleHandler(env))
+	r.Handle("/js/client.js", isokit.GopherjsScriptHandler(WebAppRoot)).Methods("GET")
+	r.Handle("/js/client.js.map", isokit.GopherjsScriptMapHandler(WebAppRoot)).Methods("GET")
+	r.Handle("/template-bundle", handlers.TemplateBundleHandler(env)).Methods("POST")
 
 	// Register Request Handlers for GopherJS Examples
 	r.Handle("/front-end-examples-demo", handlers.FrontEndExamplesHandler(env)).Methods("GET")
@@ -81,7 +81,7 @@ func registerRoutes(env *common.Env, r *mux.Router, hub *chat.Hub) {
 	// Register Request Handlers for IGWEB
 	r.Handle("/", handlers.IndexHandler(env)).Methods("GET")
 	r.Handle("/index", handlers.IndexHandler(env)).Methods("GET")
-	r.Handle("/lowercase-text", handlers.LowercaseTextTransformHandler(env))
+	r.Handle("/lowercase-text", handlers.LowercaseTextTransformHandler(env)).Methods("POST")
 	r.Handle("/products", handlers.ProductsHandler(env)).Methods("GET")
 	r.Handle("/product-detail/{productTitle}", handlers.ProductDetailHandler(env)).Methods("GET")
 	r.Handle("/about", handlers.AboutHandler(env)).Methods("GET")
@@ -110,8 +110,8 @@ func main() {
 	}
 
 	env := common.Env{}
-	initializeTemplateSet(&env)
 	initializeDatastore(&env)
+	initializeTemplateSet(&env)
 	initializeCogs(env.TemplateSet)
 
 	hub := chat.NewHub()

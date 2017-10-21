@@ -65,6 +65,7 @@ body img {
 #primaryContent {
 	min-height: 630px;
 	margin-left: 14px;
+	margin-bottom: 36px;
 }
 
 #primaryContent h1:first-child {
@@ -487,7 +488,7 @@ li:last-child {
 
 .humanReadableGopherTime {
 	font-size: 12pt;
-
+	margin-bottom: 36px;
 }
 
 #gopherTeamContainer {
@@ -496,7 +497,7 @@ li:last-child {
 	margin: auto;
 	clear:both;
 	min-height: 810px;
-	max-width: 1080px;
+	max-width: 981px;
 	min-width: 900px;
 }
 
@@ -557,6 +558,11 @@ li:last-child {
 
 .starttime {
 	color: green;
+}
+
+.standardStartTime, .rubyStartTime {
+	padding: 0px;
+	margin-bottom: 9px;
 }
 
 /* End About Gopher Team */

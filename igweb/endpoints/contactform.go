@@ -34,6 +34,7 @@ func ContactFormEndpoint(env *common.Env) http.Handler {
 		if validationResult == true {
 			submissions.ProcessContactForm(env, contactForm)
 		}
+		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(contactForm.Errors())
 	})
 }
