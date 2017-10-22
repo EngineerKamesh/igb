@@ -36,6 +36,10 @@ func initializeTemplateSet(env *common.Env) {
 	isokit.StaticTemplateBundleFilePath = StaticAssetsPath + "/templates/igweb.tmplbundle"
 	if os.Getenv("IGWEB_MODE") == "production" {
 		isokit.UseStaticTemplateBundleFile = true
+
+		if os.Getenv("IGWEB_DISABLE_STATIC_ASSETS_BUNDLING") == "true" {
+			isokit.ShouldBundleStaticAssets = false
+		}
 	}
 
 	ts := isokit.NewTemplateSet()
@@ -115,16 +119,15 @@ func registerRoutes(env *common.Env, r *mux.Router, hub *chat.Hub) {
 }
 
 func main() {
-
 	if WebAppRoot == "" {
 		fmt.Println("The IGWEB_APP_ROOT environment variable must be set before the web server instance can be started.")
 		os.Exit(1)
 	}
 
 	env := common.Env{}
-	initializeDatastore(&env)
 	initializeTemplateSet(&env)
 	initializeCogs(env.TemplateSet)
+	initializeDatastore(&env)
 
 	hub := chat.NewHub()
 	startChatHub(hub)
