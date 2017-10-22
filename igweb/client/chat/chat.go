@@ -1,8 +1,6 @@
 package chat
 
 import (
-	"flag"
-
 	"github.com/EngineerKamesh/igb/igweb/client/common"
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/gopherjs/websocket/websocketjs"
@@ -10,16 +8,30 @@ import (
 	"honnef.co/go/js/dom"
 )
 
-var addr = flag.String("addr", "localhost:8080", "http service address")
 var ws *websocketjs.WebSocket
 var agentInfo map[string]string
 
 const ENTERKEY int = 13
 
+func getServerPort(env *common.Env) string {
+
+	if env.Location.Port != "" {
+		return env.Location.Port
+	}
+
+	if env.Location.Protocol == "https" {
+		return "443"
+	} else {
+		return "80"
+	}
+
+}
+
 func StartLiveChat(env *common.Env) {
 
 	var err error
-	ws, err = websocketjs.New("ws://localhost:8080/ws") // Does not block.
+	serverEndpoint := "ws://" + env.Location.Hostname + ":" + getServerPort(env) + "/ws"
+	ws, err = websocketjs.New(serverEndpoint)
 	if err != nil {
 		// handle error
 	}

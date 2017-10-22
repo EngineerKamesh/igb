@@ -4,6 +4,12 @@
 		<div class="pageContent" id="primaryContent">
 			{{ template "pagecontent" . }}
 		</div>
-<script src="/js/client.js"></script>
+
+	{{if productionmode}}
+	<script type="text/javascript" src="/static/js/client.js"></script>
+	{{else}}
+	<script type="text/javascript" src="/js/client.js"></script>
+	{{end}}
+
 </body>
 </html>

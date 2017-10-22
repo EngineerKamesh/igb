@@ -11,4 +11,5 @@ type Env struct {
 	Window         dom.Window
 	Document       dom.Document
 	PrimaryContent dom.Element
+	Location       *dom.Location
 }

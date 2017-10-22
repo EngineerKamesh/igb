@@ -83,7 +83,7 @@ func run() {
 
 	// Fetch the template set
 	templateSetChannel := make(chan *isokit.TemplateSet)
-	funcMap := template.FuncMap{"rubyformat": templatefuncs.RubyDate, "unixformat": templatefuncs.UnixTime}
+	funcMap := template.FuncMap{"rubyformat": templatefuncs.RubyDate, "unixformat": templatefuncs.UnixTime, "productionmode": templatefuncs.IsProduction}
 	go isokit.FetchTemplateBundleWithSuppliedFunctionMap(templateSetChannel, funcMap)
 	ts := <-templateSetChannel
 
@@ -92,6 +92,7 @@ func run() {
 	env.Window = dom.GetWindow()
 	env.Document = dom.GetWindow().Document()
 	env.PrimaryContent = env.Document.GetElementByID("primaryContent")
+	env.Location = env.Window.Location()
 
 	registerRoutes(&env)
 	initializePage(&env)

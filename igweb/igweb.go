@@ -32,8 +32,14 @@ func initializeTemplateSet(env *common.Env) {
 	isokit.WebAppRoot = WebAppRoot
 	isokit.TemplateFilesPath = TemplateFilesPath
 	isokit.StaticAssetsPath = StaticAssetsPath
+
+	isokit.StaticTemplateBundleFilePath = StaticAssetsPath + "/templates/igweb.tmplbundle"
+	if os.Getenv("IGWEB_MODE") == "production" {
+		isokit.UseStaticTemplateBundleFile = true
+	}
+
 	ts := isokit.NewTemplateSet()
-	funcMap := template.FuncMap{"rubyformat": templatefuncs.RubyDate, "unixformat": templatefuncs.UnixTime}
+	funcMap := template.FuncMap{"rubyformat": templatefuncs.RubyDate, "unixformat": templatefuncs.UnixTime, "productionmode": templatefuncs.IsProduction}
 	ts.Funcs = funcMap
 	ts.GatherTemplates()
 	env.TemplateSet = ts
@@ -50,6 +56,7 @@ func initializeDatastore(env *common.Env) {
 
 // initializeCogs is responsible for initializing all the cogs that will be used in the web app
 func initializeCogs(ts *isokit.TemplateSet) {
+
 	liveclock.NewLiveClock().CogInit(ts)
 	timeago.NewTimeAgo().CogInit(ts)
 	datepicker.NewDatePicker().CogInit(ts)
