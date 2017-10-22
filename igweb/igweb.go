@@ -47,7 +47,12 @@ func initializeTemplateSet(env *common.Env) {
 
 // initializeDatastore is responsible for initializing the datastore for our web application's data persistence needs
 func initializeDatastore(env *common.Env) {
-	db, err := datastore.NewDatastore(datastore.REDIS, "localhost:6379")
+	connectionString := "localhost:6379"
+	if os.Getenv("IGWEB_DB_CONNECTION_STRING") != "" {
+		connectionString = os.Getenv("IGWEB_DB_CONNECTION_STRING")
+	}
+
+	db, err := datastore.NewDatastore(datastore.REDIS, connectionString)
 	if err != nil {
 		log.Fatalf("Could not connect to the Redis Datastore! Encountered the following error when attempting to create a datastore instance: ", err)
 	}
