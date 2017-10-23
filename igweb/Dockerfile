@@ -25,9 +25,9 @@ RUN cd $IGWEB_APP_ROOT/client; go get ./..; gopherjs build -m -o $IGWEB_APP_ROOT
 RUN go install github.com/EngineerKamesh/igb/igweb
 
 # Add the static assets
-ADD ./static/css/cogimports.css $IGWEB_APP_ROOT/static/css/cogimports.css
-ADD ./static/js/cogimports.js $IGWEB_APP_ROOT/static/js/cogimports.js
-ADD ./static/templates/igweb.tmplbundle $IGWEB_APP_ROOT/static/templates/igweb.tmplbundle
+ADD ./config/default_static_assets/cogimports.css $IGWEB_APP_ROOT/static/css/cogimports.css
+ADD ./config/default_static_assets/cogimports.js $IGWEB_APP_ROOT/static/js/cogimports.js
+ADD ./config/default_static_assets/igweb.tmplbundle $IGWEB_APP_ROOT/static/templates/igweb.tmplbundle
 
 # Specify the entrypoint
 ENTRYPOINT /go/bin/igweb
