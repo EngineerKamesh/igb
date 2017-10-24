@@ -1,11 +1,10 @@
 FROM golang
 MAINTAINER Kamesh Balasubramanian kamesh@kamesh.com
 
-# Declare required environment varialbes
+# Declare required environment variables
 ARG IGWEB_APP_ROOT=/go/src/github.com/EngineerKamesh/igb/igweb
 ARG IGWEB_DB_CONNECTION_STRING="database:6379"
 ARG IGWEB_MODE=production
-ARG IGWEB_DISABLE_STATIC_ASSETS_BUNDLING=true
 ARG GOPATH=/go
 
 # Get the needed packages

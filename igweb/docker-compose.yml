@@ -10,7 +10,6 @@ services:
         - IGWEB_APP_ROOT=/go/src/github.com/EngineerKamesh/igb/igweb
         - IGWEB_DB_CONNECTION_STRING=database:6379
         - IGWEB_MODE=production
-        - IGWEB_DISABLE_STATIC_ASSETS_BUNDLING=true
     build: .
     ports:
         - "8080:8080"

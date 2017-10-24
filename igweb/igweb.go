@@ -23,23 +23,21 @@ import (
 )
 
 var WebAppRoot string
+var WebAppMode string
 var WebServerPort string
-var TemplateFilesPath string
+var DBConnectionString string
 var StaticAssetsPath string
 
 // initializeTemplateset is responsible for initializing the template set on the server-side
 func initializeTemplateSet(env *common.Env) {
 	isokit.WebAppRoot = WebAppRoot
-	isokit.TemplateFilesPath = TemplateFilesPath
+	isokit.TemplateFilesPath = WebAppRoot + "/shared/templates"
 	isokit.StaticAssetsPath = StaticAssetsPath
-
 	isokit.StaticTemplateBundleFilePath = StaticAssetsPath + "/templates/igweb.tmplbundle"
-	if os.Getenv("IGWEB_MODE") == "production" {
-		isokit.UseStaticTemplateBundleFile = true
 
-		if os.Getenv("IGWEB_DISABLE_STATIC_ASSETS_BUNDLING") == "true" {
-			isokit.ShouldBundleStaticAssets = false
-		}
+	if WebAppMode == "production" {
+		isokit.UseStaticTemplateBundleFile = true
+		isokit.ShouldBundleStaticAssets = false
 	}
 
 	ts := isokit.NewTemplateSet()
@@ -51,12 +49,7 @@ func initializeTemplateSet(env *common.Env) {
 
 // initializeDatastore is responsible for initializing the datastore for our web application's data persistence needs
 func initializeDatastore(env *common.Env) {
-	connectionString := "localhost:6379"
-	if os.Getenv("IGWEB_DB_CONNECTION_STRING") != "" {
-		connectionString = os.Getenv("IGWEB_DB_CONNECTION_STRING")
-	}
-
-	db, err := datastore.NewDatastore(datastore.REDIS, connectionString)
+	db, err := datastore.NewDatastore(datastore.REDIS, DBConnectionString)
 	if err != nil {
 		log.Fatalf("Could not connect to the Redis Datastore! Encountered the following error when attempting to create a datastore instance: ", err)
 	}
@@ -147,14 +140,20 @@ func main() {
 func init() {
 
 	WebAppRoot = os.Getenv("IGWEB_APP_ROOT")
+	WebAppMode = os.Getenv("IGWEB_MODE")
 	WebServerPort = os.Getenv("IGWEB_SERVER_PORT")
+	DBConnectionString = os.Getenv("IGWEB_DB_CONNECTION_STRING")
 
 	// Set the default web server port if it hasn't been set already
 	if WebServerPort == "" {
 		WebServerPort = "8080"
 	}
 
-	TemplateFilesPath = WebAppRoot + "/shared/templates"
+	// Set the default database connection string
+	if DBConnectionString == "" {
+		DBConnectionString = "localhost:6379"
+	}
+
 	StaticAssetsPath = WebAppRoot + "/static"
 
 }
