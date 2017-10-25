@@ -1,0 +1,14 @@
+[Unit]
+Description=IGWEB
+
+[Service]
+USER=igweb
+GROUP=igweb
+Environment=IGWEB_APP_ROOT=/home/igweb/igweb
+Environment=IGWEB_MODE=production
+WorkingDirectory=/home/igweb/igweb
+ExecStart=/home/igweb/igweb/igweb
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
