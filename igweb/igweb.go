@@ -76,9 +76,13 @@ func registerRoutes(env *common.Env, r *mux.Router, hub *chat.Hub) {
 	// Register Handler for Loading the Sample Dataset into a Redis Instance
 	r.Handle("/config/load-sample-data", handlers.LoadSampleDataHandler(env)).Methods("GET")
 
-	// Register Handlers for Client-Side Application
-	r.Handle("/js/client.js", isokit.GopherjsScriptHandler(WebAppRoot)).Methods("GET")
-	r.Handle("/js/client.js.map", isokit.GopherjsScriptMapHandler(WebAppRoot)).Methods("GET")
+	// Register Handlers for Client-Side JavaScript Application
+	if WebAppMode != "production" {
+		r.Handle("/js/client.js", isokit.GopherjsScriptHandler(WebAppRoot)).Methods("GET")
+		r.Handle("/js/client.js.map", isokit.GopherjsScriptMapHandler(WebAppRoot)).Methods("GET")
+	}
+
+	// Register handler for the delivery of the template bundle
 	r.Handle("/template-bundle", handlers.TemplateBundleHandler(env)).Methods("POST")
 
 	// Register Request Handlers for GopherJS Examples
