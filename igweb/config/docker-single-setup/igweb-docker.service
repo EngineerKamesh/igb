@@ -1,11 +1,13 @@
 [Unit]
 Description=Dockerized IGWEB
+After=docker.service
+Requires=docker.service
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
 WorkingDirectory=/opt/igb/igweb
-ExecStart=/usr/bin/docker-compose -f /opt/igb/igweb/docker-compose.yml up
+ExecStart=/usr/bin/docker-compose -f /opt/igb/igweb/docker-compose.yml up -d
 ExecStop=/usr/bin/docker-compose -f /opt/igb/igweb/docker-compose.yml down
 
 [Install]
