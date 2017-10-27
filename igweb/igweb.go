@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"html/template"
 	"log"
@@ -28,14 +29,14 @@ var WebServerPort string
 var DBConnectionString string
 var StaticAssetsPath string
 
-// initializeTemplateset is responsible for initializing the template set on the server-side
-func initializeTemplateSet(env *common.Env) {
+// initializeTemplateSet is responsible for initializing the template set on the server-side
+func initializeTemplateSet(env *common.Env, oneTimeStaticAssetsGeneration bool) {
 	isokit.WebAppRoot = WebAppRoot
 	isokit.TemplateFilesPath = WebAppRoot + "/shared/templates"
 	isokit.StaticAssetsPath = StaticAssetsPath
 	isokit.StaticTemplateBundleFilePath = StaticAssetsPath + "/templates/igweb.tmplbundle"
 
-	if WebAppMode == "production" {
+	if WebAppMode == "production" && oneTimeStaticAssetsGeneration == false {
 		isokit.UseStaticTemplateBundleFile = true
 		isokit.ShouldBundleStaticAssets = false
 	}
@@ -116,13 +117,22 @@ func registerRoutes(env *common.Env, r *mux.Router, hub *chat.Hub) {
 }
 
 func main() {
+
+	env := common.Env{}
+
 	if WebAppRoot == "" {
 		fmt.Println("The IGWEB_APP_ROOT environment variable must be set before the web server instance can be started.")
 		os.Exit(1)
 	}
 
-	env := common.Env{}
-	initializeTemplateSet(&env)
+	shouldGenerateStaticAssetsAndExit := flag.Bool("generate-static-assets", false, "One time generation of static assets for production use.")
+	flag.Parse()
+
+	if *shouldGenerateStaticAssetsAndExit == true {
+		generateStaticAssetsAndExit(&env)
+	}
+
+	initializeTemplateSet(&env, false)
 	initializeCogs(env.TemplateSet)
 	initializeDatastore(&env)
 
@@ -159,5 +169,17 @@ func init() {
 	}
 
 	StaticAssetsPath = WebAppRoot + "/static"
+
+}
+
+func generateStaticAssetsAndExit(env *common.Env) {
+
+	fmt.Print("Generating static assets...")
+	isokit.ShouldMinifyStaticAssets = true
+	isokit.ShouldBundleStaticAssets = true
+	initializeTemplateSet(env, true)
+	initializeCogs(env.TemplateSet)
+	fmt.Println("Done")
+	os.Exit(0)
 
 }
