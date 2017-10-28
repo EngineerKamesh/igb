@@ -37,17 +37,11 @@ func (lc *LiveClock) Start() error {
 		return errors.New("The timezoneName and timezoneOffset props need to be set!")
 	}
 
-	lc.ticker = time.NewTicker(time.Millisecond * 500)
+	lc.ticker = time.NewTicker(time.Millisecond * 1000)
 
 	go func() {
 		for t := range lc.ticker.C {
-
-			if location != nil {
-				lc.SetProp("currentTime", t.In(location).Format(layout))
-			} else {
-				lc.SetProp("currentTime", t.Format(layout))
-			}
-
+			lc.SetProp("currentTime", t.In(location).Format(layout))
 		}
 	}()
 
