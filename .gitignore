@@ -9,3 +9,7 @@
 cogimports.*
 *.rdb
 *.tmplbundle
+builds
+scripts
+igweb.min.css
+client.min.js
