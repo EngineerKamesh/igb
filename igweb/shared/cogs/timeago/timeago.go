@@ -1,6 +1,7 @@
 package timeago
 
 import (
+	"errors"
 	"reflect"
 	"time"
 
@@ -12,6 +13,7 @@ var cogType reflect.Type
 
 type TimeAgo struct {
 	cog.UXCog
+	timeInstance time.Time
 }
 
 func NewTimeAgo() *TimeAgo {
@@ -21,7 +23,18 @@ func NewTimeAgo() *TimeAgo {
 }
 
 func (t *TimeAgo) SetTime(timeInstance time.Time) {
-	t.SetProp("timeAgoValue", humanize.Time(timeInstance))
+	t.timeInstance = timeInstance
+}
+
+func (t *TimeAgo) Start() error {
+
+	if t.timeInstance.IsZero() == true {
+		return errors.New("The time instance value has not been set!")
+	}
+
+	t.SetProp("timeAgoValue", humanize.Time(t.timeInstance))
+
+	return nil
 }
 
 func init() {

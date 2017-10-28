@@ -53,5 +53,9 @@ func InitializeAboutPage(env *common.Env) {
 		humanTime.SetID(div.ID())
 		humanTime.SetTime(t)
 		humanTime.Render()
+		err = humanTime.Start()
+		if err != nil {
+			println("Encountered the following error when attempting to start the timeago cog: ", err)
+		}
 	}
 }
