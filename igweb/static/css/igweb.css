@@ -614,3 +614,12 @@ li:last-child {
 }
 
 /* End Index */
+
+
+/* Begin Overrides */
+
+.tns-visually-hidden {
+	display: none !important;
+}
+
+/* End Overrides */
