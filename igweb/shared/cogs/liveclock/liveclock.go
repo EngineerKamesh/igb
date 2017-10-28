@@ -1,6 +1,7 @@
 package liveclock
 
 import (
+	"errors"
 	"reflect"
 	"time"
 
@@ -25,13 +26,15 @@ func (lc *LiveClock) Cleanup() {
 	lc.ticker.Stop()
 }
 
-func (lc *LiveClock) Start() {
+func (lc *LiveClock) Start() error {
 
 	const layout = time.RFC1123Z
-
 	var location *time.Location
+
 	if lc.Props["timezoneName"] != nil && lc.Props["timezoneOffset"] != nil {
 		location = time.FixedZone(lc.Props["timezoneName"].(string), lc.Props["timezoneOffset"].(int))
+	} else {
+		return errors.New("The timezoneName and timezoneOffset props need to be set!")
 	}
 
 	lc.ticker = time.NewTicker(time.Millisecond * 500)
@@ -48,6 +51,7 @@ func (lc *LiveClock) Start() {
 		}
 	}()
 
+	return nil
 }
 
 func init() {

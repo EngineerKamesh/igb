@@ -95,7 +95,10 @@ func InitializeContactPage(env *common.Env, contactForm *forms.ContactForm) {
 	byDate.SetProp("datepickerMinDate", time.Now())
 	byDate.SetProp("datepickerMaxDate", time.Date(2027, 12, 31, 23, 59, 0, 0, time.UTC))
 	byDate.Render()
-	byDate.Start()
+	err := byDate.Start()
+	if err != nil {
+		println("Encountered the following error when attempting to start the datepicker cog: ", err)
+	}
 
 }
 

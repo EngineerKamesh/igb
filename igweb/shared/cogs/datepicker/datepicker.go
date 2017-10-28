@@ -1,6 +1,7 @@
 package datepicker
 
 import (
+	"errors"
 	"reflect"
 	"time"
 
@@ -32,36 +33,45 @@ func NewDatePicker() *DatePicker {
 	return d
 }
 
-func (d *DatePicker) Start() {
+func (d *DatePicker) Start() error {
 
 	if d.Props["datepickerInputID"] == nil {
-		return
+		return errors.New("Warning: The datePickerInputID prop need to be set!")
 	}
-
-	inputFieldID := d.Props["datepickerInputID"].(string)
-	dateInputField := JS.Get("document").Call("getElementById", inputFieldID)
 
 	params := &DatePickerParams{Object: js.Global.Get("Object").New()}
-	params.Field = dateInputField
 
-	if d.Props["datepickerMinDate"] != nil {
-		datepickerMinDate := d.Props["datepickerMinDate"].(time.Time)
-		minDateUnix := datepickerMinDate.Unix()
-		params.MinDate = JS.Get("Date").New(minDateUnix * 1000)
+	for propName, propValue := range d.Props {
+		switch propName {
+
+		case "datepickerInputID":
+			inputFieldID := propValue.(string)
+			dateInputField := JS.Get("document").Call("getElementById", inputFieldID)
+			params.Field = dateInputField
+
+		case "datepickerLabel":
+			// Do nothing
+
+		case "datepickerMinDate":
+			datepickerMinDate := propValue.(time.Time)
+			minDateUnix := datepickerMinDate.Unix()
+			params.MinDate = JS.Get("Date").New(minDateUnix * 1000)
+
+		case "datepickerMaxDate":
+			datepickerMaxDate := propValue.(time.Time)
+			maxDateUnix := datepickerMaxDate.Unix()
+			params.MaxDate = JS.Get("Date").New(maxDateUnix * 1000)
+
+		case "datepickerYearRange":
+			yearRange := propValue.([]int)
+			params.YearRange = yearRange
+
+		default:
+			println("Warning: Unknown prop name provided: ", propName)
+		}
 	}
-
-	if d.Props["datepickerMaxDate"] != nil {
-		datepickerMaxDate := d.Props["datepickerMaxDate"].(time.Time)
-		maxDateUnix := datepickerMaxDate.Unix()
-		params.MaxDate = JS.Get("Date").New(maxDateUnix * 1000)
-	}
-
-	if d.Props["datepickerYearRange"] != nil {
-		yearRange := d.Props["datepickerYearRange"].([]int)
-		params.YearRange = yearRange
-	}
-
 	d.picker = JS.Get("Pikaday").New(params)
+	return nil
 }
 
 func init() {

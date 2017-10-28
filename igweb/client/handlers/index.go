@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"context"
+	"time"
 
 	"github.com/EngineerKamesh/igb/igweb/client/common"
 	"github.com/EngineerKamesh/igb/igweb/shared/cogs/carousel"
@@ -28,16 +29,26 @@ func InitializeIndexPage(env *common.Env) {
 	c.SetProp("contentItems", contentItems)
 	c.SetProp("carouselContentID", "gophersContent")
 	c.Render()
-	c.Start()
+	err := c.Start()
+	if err != nil {
+		println("Encountered the following error when attempting to start the carousel cog: ", err)
+	}
 
-	// Live Clock Cogs
+	// Localtime Live Clock Cog
+	localZonename, localOffset := time.Now().In(time.Local).Zone()
 	lc := liveclock.NewLiveClock()
 	lc.CogInit(env.TemplateSet)
 	lc.SetID("myLiveClock")
 	lc.SetProp("timeLabel", "Local Time")
+	lc.SetProp("timezoneName", localZonename)
+	lc.SetProp("timezoneOffset", localOffset)
 	lc.Render()
-	lc.Start()
+	err = lc.Start()
+	if err != nil {
+		println("Encountered the following error when attempting to start the local liveclock cog: ", err)
+	}
 
+	// Chennai Live Clock Cog
 	chennai := liveclock.NewLiveClock()
 	chennai.CogInit(env.TemplateSet)
 	chennai.SetID("chennaiLiveClock")
@@ -45,8 +56,12 @@ func InitializeIndexPage(env *common.Env) {
 	chennai.SetProp("timezoneName", "IST")
 	chennai.SetProp("timezoneOffset", int(+5.5*3600))
 	chennai.Render()
-	chennai.Start()
+	err = chennai.Start()
+	if err != nil {
+		println("Encountered the following error when attempting to start the chennai liveclock cog: ", err)
+	}
 
+	// Singapore Live Clock Cog
 	singapore := liveclock.NewLiveClock()
 	singapore.CogInit(env.TemplateSet)
 	singapore.SetID("singaporeLiveClock")
@@ -54,8 +69,12 @@ func InitializeIndexPage(env *common.Env) {
 	singapore.SetProp("timezoneName", "SST")
 	singapore.SetProp("timezoneOffset", int(+8.0*3600))
 	singapore.Render()
-	singapore.Start()
+	err = singapore.Start()
+	if err != nil {
+		println("Encountered the following error when attempting to start the singapore liveclock cog: ", err)
+	}
 
+	// Hawaii Live Clock Cog
 	hawaii := liveclock.NewLiveClock()
 	hawaii.CogInit(env.TemplateSet)
 	hawaii.SetID("hawaiiLiveClock")
@@ -63,6 +82,9 @@ func InitializeIndexPage(env *common.Env) {
 	hawaii.SetProp("timezoneName", "HDT")
 	hawaii.SetProp("timezoneOffset", int(-10.0*3600))
 	hawaii.Render()
-	hawaii.Start()
+	err = hawaii.Start()
+	if err != nil {
+		println("Encountered the following error when attempting to start the hawaii liveclock cog: ", err)
+	}
 
 }
