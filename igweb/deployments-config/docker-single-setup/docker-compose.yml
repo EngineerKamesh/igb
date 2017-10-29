@@ -2,19 +2,9 @@ version: '2'
 services:
   database:
     image: "redis"
-    volumes:
-        - ./config/docker-single-setup/redis.conf:/usr/local/etc/redis/redis.conf
-    command: bash -c "redis-server /usr/local/etc/redis/redis.conf"
-    ports:
-        - "6379:6379"
   webapp:
     depends_on:
         - database 
-    environment:
-        - GOPATH=/go
-        - IGWEB_APP_ROOT=/go/src/github.com/EngineerKamesh/igb/igweb
-        - IGWEB_DB_CONNECTION_STRING=database:6379
-        - IGWEB_MODE=production
     build: .
     ports:
         - "8080:8080"
@@ -23,7 +13,6 @@ services:
         - webapp
     image: "nginx"
     volumes:
-        - ./config/docker-single-setup/nginx.conf:/etc/nginx/nginx.conf
+        - ./deployments-config/docker-single-setup/nginx.conf:/etc/nginx/nginx.conf
     ports:
         - "80:80"
-
