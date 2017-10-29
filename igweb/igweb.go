@@ -18,6 +18,7 @@ import (
 	"github.com/EngineerKamesh/igb/igweb/shared/cogs/carousel"
 	"github.com/EngineerKamesh/igb/igweb/shared/cogs/datepicker"
 	"github.com/EngineerKamesh/igb/igweb/shared/cogs/liveclock"
+	"github.com/EngineerKamesh/igb/igweb/shared/cogs/notify"
 	"github.com/EngineerKamesh/igb/igweb/shared/cogs/timeago"
 	"github.com/gorilla/mux"
 	"github.com/isomorphicgo/isokit"
@@ -63,6 +64,7 @@ func initializeCogs(ts *isokit.TemplateSet) {
 	liveclock.NewLiveClock().CogInit(ts)
 	datepicker.NewDatePicker().CogInit(ts)
 	carousel.NewCarousel().CogInit(ts)
+	notify.NewNotify().CogInit(ts)
 	isokit.BundleStaticAssets()
 }
 
