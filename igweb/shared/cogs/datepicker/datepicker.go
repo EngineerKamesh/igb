@@ -39,6 +39,11 @@ func (d *DatePicker) Start() error {
 		return errors.New("Warning: The datePickerInputID prop need to be set!")
 	}
 
+	err := d.Render()
+	if err != nil {
+		return err
+	}
+
 	params := &DatePickerParams{Object: js.Global.Get("Object").New()}
 
 	for propName, propValue := range d.Props {
@@ -70,7 +75,9 @@ func (d *DatePicker) Start() error {
 			println("Warning: Unknown prop name provided: ", propName)
 		}
 	}
+
 	d.picker = JS.Get("Pikaday").New(params)
+
 	return nil
 }
 

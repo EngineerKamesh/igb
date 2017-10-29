@@ -16,7 +16,10 @@
           <div class="gopherStartTime">
             <p class="standardStartTime">{{.Name}} joined the IGWEB team on <span class="starttime">{{.StartTime}}.</p>
             <p class="rubyStartTime">That's <span class="starttime">{{.StartTime | rubyformat}}</span> in Ruby date format.</p>
-            <div class="humanReadableGopherTime">That's <div id="Gopher-{{.Name}}" data-starttimeunix="{{.StartTime | unixformat}}" data-component="cog" class="humanReadableDate starttime"></div> in Human readable format.</div>
+            <div class="humanReadableGopherTime">That's
+				<div id="Gopher-{{.Name}}" data-starttimeunix="{{.StartTime | unixformat}}" data-component="cog" class="humanReadableDate starttime"></div>
+				in Human readable format.
+				</div>
           </div>
       </div>
     </div>

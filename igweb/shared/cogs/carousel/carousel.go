@@ -44,6 +44,11 @@ func (c *Carousel) Start() error {
 		return errors.New("The contentItems and carouselContentID props need to be set!")
 	}
 
+	err := c.Render()
+	if err != nil {
+		return err
+	}
+
 	params := &CarouselParams{Object: js.Global.Get("Object").New()}
 
 	// Set the default parameter values
@@ -94,6 +99,7 @@ func (c *Carousel) Start() error {
 		}
 	}
 	c.carousel = JS.Get("tns").New(params)
+
 	return nil
 }
 

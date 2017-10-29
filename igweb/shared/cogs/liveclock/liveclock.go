@@ -28,7 +28,7 @@ func (lc *LiveClock) Cleanup() {
 
 func (lc *LiveClock) Start() error {
 
-	const layout = time.RFC1123Z
+	const layout = time.RFC1123
 	var location *time.Location
 
 	if lc.Props["timezoneName"] != nil && lc.Props["timezoneOffset"] != nil {
@@ -44,6 +44,11 @@ func (lc *LiveClock) Start() error {
 			lc.SetProp("currentTime", t.In(location).Format(layout))
 		}
 	}()
+
+	err := lc.Render()
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

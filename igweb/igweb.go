@@ -59,9 +59,8 @@ func initializeDatastore(env *common.Env) {
 
 // initializeCogs is responsible for initializing all the cogs that will be used in the web app
 func initializeCogs(ts *isokit.TemplateSet) {
-
-	liveclock.NewLiveClock().CogInit(ts)
 	timeago.NewTimeAgo().CogInit(ts)
+	liveclock.NewLiveClock().CogInit(ts)
 	datepicker.NewDatePicker().CogInit(ts)
 	carousel.NewCarousel().CogInit(ts)
 	isokit.BundleStaticAssets()

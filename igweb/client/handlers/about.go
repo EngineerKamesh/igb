@@ -40,7 +40,6 @@ func FetchGopherTeam(gopherTeamChannel chan []*models.Gopher) {
 }
 
 func InitializeAboutPage(env *common.Env) {
-
 	humanReadableDivs := env.Document.GetElementsByClassName("humanReadableDate")
 	for _, div := range humanReadableDivs {
 		unixTimestamp, err := strconv.ParseInt(div.GetAttribute("data-starttimeunix"), 10, 64)
@@ -52,7 +51,6 @@ func InitializeAboutPage(env *common.Env) {
 		humanTime.CogInit(env.TemplateSet)
 		humanTime.SetID(div.ID())
 		humanTime.SetTime(t)
-		humanTime.Render()
 		err = humanTime.Start()
 		if err != nil {
 			println("Encountered the following error when attempting to start the timeago cog: ", err)

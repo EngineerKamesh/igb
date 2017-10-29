@@ -34,6 +34,11 @@ func (t *TimeAgo) Start() error {
 
 	t.SetProp("timeAgoValue", humanize.Time(t.timeInstance))
 
+	err := t.Render()
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 

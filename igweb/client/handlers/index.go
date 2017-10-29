@@ -28,7 +28,6 @@ func InitializeIndexPage(env *common.Env) {
 	contentItems := []string{"/static/images/products/watch.jpg", "/static/images/products/shirt.jpg", "/static/images/products/coffeemug.jpg"}
 	c.SetProp("contentItems", contentItems)
 	c.SetProp("carouselContentID", "gophersContent")
-	c.Render()
 	err := c.Start()
 	if err != nil {
 		println("Encountered the following error when attempting to start the carousel cog: ", err)
@@ -42,7 +41,6 @@ func InitializeIndexPage(env *common.Env) {
 	lc.SetProp("timeLabel", "Local Time")
 	lc.SetProp("timezoneName", localZonename)
 	lc.SetProp("timezoneOffset", localOffset)
-	lc.Render()
 	err = lc.Start()
 	if err != nil {
 		println("Encountered the following error when attempting to start the local liveclock cog: ", err)
@@ -55,7 +53,6 @@ func InitializeIndexPage(env *common.Env) {
 	chennai.SetProp("timeLabel", "Chennai")
 	chennai.SetProp("timezoneName", "IST")
 	chennai.SetProp("timezoneOffset", int(+5.5*3600))
-	chennai.Render()
 	err = chennai.Start()
 	if err != nil {
 		println("Encountered the following error when attempting to start the chennai liveclock cog: ", err)
@@ -68,7 +65,6 @@ func InitializeIndexPage(env *common.Env) {
 	singapore.SetProp("timeLabel", "Singapore")
 	singapore.SetProp("timezoneName", "SST")
 	singapore.SetProp("timezoneOffset", int(+8.0*3600))
-	singapore.Render()
 	err = singapore.Start()
 	if err != nil {
 		println("Encountered the following error when attempting to start the singapore liveclock cog: ", err)
@@ -81,7 +77,6 @@ func InitializeIndexPage(env *common.Env) {
 	hawaii.SetProp("timeLabel", "Hawaii")
 	hawaii.SetProp("timezoneName", "HDT")
 	hawaii.SetProp("timezoneOffset", int(-10.0*3600))
-	hawaii.Render()
 	err = hawaii.Start()
 	if err != nil {
 		println("Encountered the following error when attempting to start the hawaii liveclock cog: ", err)
