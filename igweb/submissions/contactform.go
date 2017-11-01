@@ -27,7 +27,4 @@ func ProcessContactForm(env *common.Env, form *forms.ContactForm) {
 	}
 
 	env.DB.CreateContactRequest(contactRequest)
-	//	timeSensitivityDate := form.Fields()["byDateInput"]
-	//	log.Println(timeSensitivityDate)
-
 }
