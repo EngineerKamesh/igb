@@ -26,8 +26,6 @@ func ContactHandler(env *common.Env) isokit.Handler {
 func handleContactButtonClickEvent(env *common.Env, event dom.Event, contactForm *forms.ContactForm) {
 
 	event.PreventDefault()
-	formElement := env.Document.GetElementByID("contactForm").(*dom.HTMLFormElement)
-	contactForm.SetFormParams(&isokit.FormParams{FormElement: formElement})
 	clientSideValidationResult := contactForm.Validate()
 
 	// Even if we disable the client side validation by forcing the validation result to true, the server-side validation

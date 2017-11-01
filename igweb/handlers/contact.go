@@ -10,10 +10,6 @@ import (
 	"github.com/isomorphicgo/isokit"
 )
 
-type ContactTemplateData struct {
-	Form *forms.ContactForm
-}
-
 func ContactHandler(env *common.Env) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
