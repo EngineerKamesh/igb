@@ -48,6 +48,26 @@ func NewHub() *Hub {
 	}
 }
 
+func (h *Hub) Run() {
+	for {
+		select {
+		case client := <-h.register:
+			h.clients[client] = true
+		case client := <-h.unregister:
+			if _, ok := h.clients[client]; ok {
+				delete(h.clients, client)
+				close(client.send)
+			}
+		case clientmsg := <-h.broadcastmsg:
+			client := clientmsg.client
+			//client.send <- clientmsg.message
+			reply := precannedReply(string(clientmsg.message))
+			time.Sleep(500 * time.Millisecond)
+			client.send <- []byte(reply)
+		}
+	}
+}
+
 func precannedReply(query string) string {
 
 	var result string
@@ -95,40 +115,6 @@ func precannedReply(query string) string {
 
 	return result
 
-}
-
-func (h *Hub) Run() {
-	for {
-		select {
-		case client := <-h.register:
-			h.clients[client] = true
-		case client := <-h.unregister:
-			if _, ok := h.clients[client]; ok {
-				delete(h.clients, client)
-				close(client.send)
-			}
-		case clientmsg := <-h.broadcastmsg:
-			client := clientmsg.client
-			//client.send <- clientmsg.message
-			reply := precannedReply(string(clientmsg.message))
-			time.Sleep(500 * time.Millisecond)
-			client.send <- []byte(reply)
-			/*
-				case message := <-h.broadcast:
-					fmt.Println(message)
-					fmt.Println("client: ", <-h.register)
-					for client := range h.clients {
-						select {
-						case client.send <- zoostation:
-							//				case client.send <- message:
-						default:
-							close(client.send)
-							delete(h.clients, client)
-						}
-					}
-			*/
-		}
-	}
 }
 
 func init() {
