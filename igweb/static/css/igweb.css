@@ -117,10 +117,12 @@ footer {
 
 /*	background-color: #fff !important; */
 	border: 1px solid #000;
+}
+
+.containerPulse {
   -webkit-animation-name: greenPulse;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
-
 }
 
 #chatbox {
@@ -150,9 +152,25 @@ footer {
 #chatboxCloseControl {
 	position: relative;
 	margin-right: 9px;
-	top: -9px;
+	top: -18px;
 	float: right;
 
+
+
+    display: block;
+    height: 27px;
+    width: 27px;
+    line-height: 27px;
+
+    -moz-border-radius: 30px; /* or 50% */
+    border-radius: 30px; /* or 50% */
+
+    background-color: rgb(63,63,63);
+
+    color: white;
+    text-align: center;
+    font-size: 12pt;
+	font-weight: bold;
 }
 
 .chatSenderName {
@@ -623,3 +641,12 @@ li:last-child {
 }
 
 /* End Overrides */
+
+/* Begin Chat */
+
+.disconnected {
+	background-color: red !important;
+}
+
+
+/* End Chat */

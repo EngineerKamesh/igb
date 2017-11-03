@@ -42,7 +42,12 @@ func StartLiveChat(env *common.Env) {
 	agentInfo["AgentTitle"] = "Resident Isomorphic Gopher Agent"
 
 	chatContainer := env.Document.GetElementByID("chatboxContainer").(*dom.HTMLDivElement)
+	chatContainer.SetClass("containerPulse")
+
 	env.TemplateSet.Render("partials/chatbox_partial", &isokit.RenderParams{Data: agentInfo, Disposition: isokit.PlacementReplaceInnerContents, Element: chatContainer})
+
+	chatboxHeaderBar := env.Document.GetElementByID("chatboxHeaderBar").(*dom.HTMLDivElement)
+	chatboxHeaderBar.SetClass("chatboxHeader")
 
 	InitializeChatEventHandlers(env)
 
@@ -99,5 +104,32 @@ func InitializeChatEventHandlers(env *common.Env) {
 	ws.AddEventListener("message", false, func(ev *js.Object) {
 		handleOnMessage(env, ev)
 	})
+
+	ws.AddEventListener("close", false, func(ev *js.Object) {
+		HandleDisconnection(env)
+	})
+
+	ws.AddEventListener("error", false, func(ev *js.Object) {
+		HandleDisconnection(env)
+	})
+
+}
+
+func HandleDisconnection(env *common.Env) {
+
+	chatContainer := env.Document.GetElementByID("chatboxContainer").(*dom.HTMLDivElement)
+	chatContainer.SetClass("")
+
+	chatboxHeaderBar := env.Document.GetElementByID("chatboxHeaderBar").(*dom.HTMLDivElement)
+	chatboxHeaderBar.SetClass("chatboxHeader disconnected")
+
+	chatboxTitleDiv := env.Document.GetElementByID("chatboxTitle").(*dom.HTMLDivElement)
+	if chatboxTitleDiv != nil {
+		titleSpan := chatboxTitleDiv.ChildNodes()[0].(*dom.HTMLSpanElement)
+		if titleSpan != nil {
+			titleSpan.SetInnerHTML("Connection Closed")
+		}
+
+	}
 
 }
