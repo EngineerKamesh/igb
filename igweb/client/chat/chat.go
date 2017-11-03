@@ -45,7 +45,7 @@ func StartLiveChat(env *common.Env) {
 
 	agentInfoChannel := make(chan map[string]string)
 	go GetAgentInfoRequest(agentInfoChannel)
-	agentInfo := <-agentInfoChannel
+	agentInfo = <-agentInfoChannel
 
 	chatContainer := env.Document.GetElementByID("chatboxContainer").(*dom.HTMLDivElement)
 	chatContainer.SetClass("containerPulse")
@@ -133,7 +133,8 @@ func HandleDisconnection(env *common.Env) {
 			go func() {
 				for _ = range tickerForCountdown.C {
 					atomic.AddUint64(&countdown, ^uint64(0))
-					titleSpan.SetInnerHTML("Disconnected! - Closing LiveChat in " + strconv.FormatUint(countdown, 10) + " seconds.")
+					safeCountdownValue := atomic.LoadUint64(&countdown)
+					titleSpan.SetInnerHTML("Disconnected! - Closing LiveChat in " + strconv.FormatUint(safeCountdownValue, 10) + " seconds.")
 				}
 			}()
 			go func() {
