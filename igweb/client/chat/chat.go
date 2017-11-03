@@ -129,7 +129,5 @@ func HandleDisconnection(env *common.Env) {
 		if titleSpan != nil {
 			titleSpan.SetInnerHTML("Connection Closed")
 		}
-
 	}
-
 }
