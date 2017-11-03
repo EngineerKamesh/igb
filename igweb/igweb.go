@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/EngineerKamesh/igb/igweb/bot"
 	"github.com/EngineerKamesh/igb/igweb/chat"
 	"github.com/EngineerKamesh/igb/igweb/common"
 	"github.com/EngineerKamesh/igb/igweb/common/datastore"
@@ -112,6 +113,7 @@ func registerRoutes(env *common.Env, r *mux.Router, hub *chat.Hub) {
 	r.Handle("/restapi/add-item-to-cart", endpoints.AddItemToShoppingCartEndpoint(env)).Methods("PUT")
 	r.Handle("/restapi/remove-item-from-cart", endpoints.RemoveItemFromShoppingCartEndpoint(env)).Methods("DELETE")
 	r.Handle("/restapi/contact-form", endpoints.ContactFormEndpoint(env)).Methods("POST")
+	r.Handle("/restapi/get-agent-info", endpoints.GetAgentInfoEndpoint(env, hub.ChatBot()))
 
 	// Register Request Handler for the Websocket Connection used by the live chat feature
 	r.Handle("/ws", chat.ServeWs(hub))
@@ -137,7 +139,8 @@ func main() {
 	initializeCogs(env.TemplateSet)
 	initializeDatastore(&env)
 
-	hub := chat.NewHub()
+	chatbot := bot.NewAgentCase()
+	hub := chat.NewHub(chatbot)
 	startChatHub(hub)
 
 	r := mux.NewRouter()

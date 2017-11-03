@@ -1,11 +1,18 @@
 package chat
 
 import (
+	"encoding/json"
+	"strconv"
+	"strings"
+	"sync/atomic"
+	"time"
+
 	"github.com/EngineerKamesh/igb/igweb/client/common"
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/gopherjs/websocket/websocketjs"
 	"github.com/isomorphicgo/isokit"
 	"honnef.co/go/js/dom"
+	"honnef.co/go/js/xhr"
 )
 
 var ws *websocketjs.WebSocket
@@ -33,13 +40,12 @@ func StartLiveChat(env *common.Env) {
 	serverEndpoint := "ws://" + env.Location.Hostname + ":" + getServerPort(env) + "/ws"
 	ws, err = websocketjs.New(serverEndpoint)
 	if err != nil {
-		// handle error
+		println("Encountered error when attempting to connect to the websocket: ", err)
 	}
 
-	agentInfo = make(map[string]string)
-	agentInfo["AgentName"] = "Case"
-	agentInfo["AgentThumbImagePath"] = "/static/images/chat/Case.png"
-	agentInfo["AgentTitle"] = "Resident Isomorphic Gopher Agent"
+	agentInfoChannel := make(chan map[string]string)
+	go GetAgentInfoRequest(agentInfoChannel)
+	agentInfo := <-agentInfoChannel
 
 	chatContainer := env.Document.GetElementByID("chatboxContainer").(*dom.HTMLDivElement)
 	chatContainer.SetClass("containerPulse")
@@ -51,9 +57,6 @@ func StartLiveChat(env *common.Env) {
 
 	InitializeChatEventHandlers(env)
 
-	for {
-		select {}
-	}
 }
 
 func UpdateChatBox(env *common.Env, message string, sender string) {
@@ -67,7 +70,7 @@ func UpdateChatBox(env *common.Env, message string, sender string) {
 	conversationContainer.Underlying().Set("scrollTop", scrollHeight)
 }
 
-func handleOnMessage(env *common.Env, ev *js.Object) {
+func HandleOnMessage(env *common.Env, ev *js.Object) {
 
 	response := ev.Get("data").String()
 	UpdateChatBox(env, response, agentInfo["AgentName"])
@@ -78,8 +81,11 @@ func ChatSendMessage(env *common.Env, message string) {
 	UpdateChatBox(env, message, "Me")
 }
 
-func CloseChat() {
+func CloseChat(env *common.Env) {
 	ws.Close()
+	chatboxContainer := env.Document.GetElementByID("chatboxContainer").(*dom.HTMLDivElement)
+	chatboxContainer.RemoveChild(chatboxContainer.ChildNodes()[0])
+
 }
 
 func InitializeChatEventHandlers(env *common.Env) {
@@ -96,21 +102,15 @@ func InitializeChatEventHandlers(env *common.Env) {
 
 	closeControl := env.Document.GetElementByID("chatboxCloseControl").(*dom.HTMLDivElement)
 	closeControl.AddEventListener("click", false, func(event dom.Event) {
-		CloseChat()
-		chatboxContainer := env.Document.GetElementByID("chatboxContainer").(*dom.HTMLDivElement)
-		chatboxContainer.RemoveChild(chatboxContainer.ChildNodes()[0])
+		CloseChat(env)
 	})
 
 	ws.AddEventListener("message", false, func(ev *js.Object) {
-		handleOnMessage(env, ev)
+		go HandleOnMessage(env, ev)
 	})
 
-	ws.AddEventListener("close", false, func(ev *js.Object) {
-		HandleDisconnection(env)
-	})
-
-	ws.AddEventListener("error", false, func(ev *js.Object) {
-		HandleDisconnection(env)
+	env.Window.AddEventListener("offline", false, func(event dom.Event) {
+		go HandleDisconnection(env)
 	})
 
 }
@@ -127,7 +127,30 @@ func HandleDisconnection(env *common.Env) {
 	if chatboxTitleDiv != nil {
 		titleSpan := chatboxTitleDiv.ChildNodes()[0].(*dom.HTMLSpanElement)
 		if titleSpan != nil {
-			titleSpan.SetInnerHTML("Connection Closed")
+			var countdown uint64 = 5
+			tickerForCountdown := time.NewTicker(1 * time.Second)
+			timerToCloseChat := time.NewTimer(5 * time.Second)
+			go func() {
+				for _ = range tickerForCountdown.C {
+					atomic.AddUint64(&countdown, ^uint64(0))
+					titleSpan.SetInnerHTML("Disconnected! - Closing LiveChat in " + strconv.FormatUint(countdown, 10) + " seconds.")
+				}
+			}()
+			go func() {
+				<-timerToCloseChat.C
+				tickerForCountdown.Stop()
+				CloseChat(env)
+			}()
 		}
 	}
+}
+
+func GetAgentInfoRequest(agentInfoChannel chan map[string]string) {
+	data, err := xhr.Send("GET", "/restapi/get-agent-info", nil)
+	if err != nil {
+		println("Encountered error: ", err)
+	}
+	var agentInfo map[string]string
+	json.NewDecoder(strings.NewReader(string(data))).Decode(&agentInfo)
+	agentInfoChannel <- agentInfo
 }
