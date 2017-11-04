@@ -36,16 +36,16 @@ func getServerPort(env *common.Env) string {
 
 func StartLiveChat(env *common.Env) {
 
+	agentInfoChannel := make(chan map[string]string)
+	go GetAgentInfoRequest(agentInfoChannel)
+	agentInfo = <-agentInfoChannel
+
 	var err error
 	serverEndpoint := "ws://" + env.Location.Hostname + ":" + getServerPort(env) + "/ws"
 	ws, err = websocketjs.New(serverEndpoint)
 	if err != nil {
 		println("Encountered error when attempting to connect to the websocket: ", err)
 	}
-
-	agentInfoChannel := make(chan map[string]string)
-	go GetAgentInfoRequest(agentInfoChannel)
-	agentInfo = <-agentInfoChannel
 
 	chatContainer := env.Document.GetElementByID("chatboxContainer").(*dom.HTMLDivElement)
 	chatContainer.SetClass("containerPulse")
