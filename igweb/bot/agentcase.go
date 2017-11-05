@@ -116,7 +116,7 @@ func (a *AgentCase) initializeIntelligence() {
 		"isomorphic go isomorphic go web applications":                                            "Isomorphic Go is the methodology to create isomorphic web applications using the Go (Golang) programming language. An isomorphic web application, is a web application, that contains code which can run, on both the web client and the web server.",
 		"kick recompile code restart web server instance instant kickstart lightweight mechanism": "Kick is a lightweight mechanism to provide an instant kickstart to a Go web server instance, upon the modification of a Go source file within a particular project directory (including any subdirectories). An instant kickstart consists of a recompilation of the Go code and a restart of the web server instance. Kick comes with the ability to take both the go and gopherjs commands into consideration when performing the instant kickstart. This makes it a really handy tool for isomorphic golang projects.",
 		"starter code starter kit":                                                                "The isogoapp, is a basic, barebones web app, intended to be used as a starting point for developing an Isomorphic Go application. Here's the link to the github page: https://github.com/isomorphicgo/isogoapp",
-		"idiot stupid dumb dummy don't know anything":                                             "Please don't question my intelligence, it's artificial after all!",
+		"lack intelligence idiot stupid dumb dummy don't know anything":                           "Please don't question my intelligence, it's artificial after all!",
 		"more info a topic where can i find talk lecture presentation":                            "Watch the Isomorphic Go talk by Kamesh Balasubramanian at GopherCon India: https://youtu.be/zrsuxZEoTcs",
 		"benefits of the technology significance of the technology importance of the technology":  "Here are some benefits of Isomorphic Go: Unlike JavaScript, Go provides type safety, allowing us to find and eliminate many bugs at compile time itself. Eliminates mental context-shifts between back-end and front-end coding. Page loading prompts are not necessary.",
 		"perform routing web app register routes define routes":                                   "You can implement client-side routing in your web application using the IsoKit Router preventing the dreaded full page reload.",
@@ -125,7 +125,6 @@ func (a *AgentCase) initializeIntelligence() {
 	}
 
 	a.knowledgeCorpus = make([]string, 1)
-
 	for k, _ := range a.knowledgeBase {
 		a.knowledgeCorpus = append(a.knowledgeCorpus, k)
 	}

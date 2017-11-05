@@ -109,6 +109,14 @@ func InitializeChatEventHandlers(env *common.Env) {
 		go HandleOnMessage(env, ev)
 	})
 
+	ws.AddEventListener("close", false, func(ev *js.Object) {
+
+		chatboxContainer := env.Document.GetElementByID("chatboxContainer").(*dom.HTMLDivElement)
+		if len(chatboxContainer.ChildNodes()) > 0 {
+			go HandleDisconnection(env)
+		}
+	})
+
 	env.Window.AddEventListener("offline", false, func(event dom.Event) {
 		go HandleDisconnection(env)
 	})
