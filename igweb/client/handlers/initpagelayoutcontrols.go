@@ -15,14 +15,13 @@ func InitializePageLayoutControls(env *common.Env) {
 		println("Error encontered when attempting to start the notify cog: ", err)
 	}
 
-	chatbox := env.Document.GetElementByID("chatbox")
-
-	if chatbox != nil {
-		return
-	}
-
 	liveChatIcon := env.Document.GetElementByID("liveChatIcon").(*dom.HTMLImageElement)
 	liveChatIcon.AddEventListener("click", false, func(event dom.Event) {
+
+		chatbox := env.Document.GetElementByID("chatbox")
+		if chatbox != nil {
+			return
+		}
 		go chat.StartLiveChat(env)
 	})
 

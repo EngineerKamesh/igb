@@ -68,23 +68,16 @@ func (a *AgentCase) Reply(query string) string {
 	vectoriser := nlp.NewCountVectoriser(true)
 	transformer := nlp.NewTfidfTransformer()
 
-	// set k (the number of dimensions following truncation) to 4
 	reducer := nlp.NewTruncatedSVD(4)
 
-	// Transform the corpus into an LSI fitting the model to the documents in the process
 	matrix, _ := vectoriser.FitTransform(a.knowledgeCorpus...)
 	matrix, _ = transformer.FitTransform(matrix)
 	lsi, _ := reducer.FitTransform(matrix)
 
-	// run the query through the same pipeline that was fitted to the corpus and
-	// to project it into the same dimensional space
 	matrix, _ = vectoriser.Transform(query)
 	matrix, _ = transformer.Transform(matrix)
 	queryVector, _ := reducer.Transform(matrix)
 
-	// iterate over document feature vectors (columns) in the LSI and compare with the
-	// query vector for similarity.  Similarity is determined by the difference between
-	// the angles of the vectors known as the cosine similarity
 	highestSimilarity := -1.0
 	var matched int
 	_, docs := lsi.Dims()
@@ -100,10 +93,6 @@ func (a *AgentCase) Reply(query string) string {
 		result = "I don't know the answer to that one."
 	} else {
 		result = a.knowledgeBase[a.knowledgeCorpus[matched]]
-	}
-
-	if result == "" {
-		result = "Sorry, I don't know what you're talking about. My knowledge is limited."
 	}
 
 	return result
@@ -129,6 +118,6 @@ func (a *AgentCase) initializeIntelligence() {
 		a.knowledgeCorpus = append(a.knowledgeCorpus, k)
 	}
 
-	a.sampleQuestions = []string{"What is isomorphic go?", "What are the benefits of this technology?", "Does isomorphic go offer anything react-like?", "How can I recompile code instantly?", "How can I perform routing in my web app?", "Where can I get starter code?", "Where can I watch a talk on this subject?"}
+	a.sampleQuestions = []string{"What is isomorphic go?", "What are the benefits of this technology?", "Does isomorphic go offer anything react-like?", "How can I recompile code instantly?", "How can I perform routing in my web app?", "Where can I get starter code?", "Where can I find a talk on this topic?"}
 
 }

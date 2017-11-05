@@ -135,9 +135,9 @@ func HandleDisconnection(env *common.Env) {
 	if chatboxTitleDiv != nil {
 		titleSpan := chatboxTitleDiv.ChildNodes()[0].(*dom.HTMLSpanElement)
 		if titleSpan != nil {
-			var countdown uint64 = 5
+			var countdown uint64 = 6
 			tickerForCountdown := time.NewTicker(1 * time.Second)
-			timerToCloseChat := time.NewTimer(5 * time.Second)
+			timerToCloseChat := time.NewTimer(6 * time.Second)
 			go func() {
 				for _ = range tickerForCountdown.C {
 					atomic.AddUint64(&countdown, ^uint64(0))
