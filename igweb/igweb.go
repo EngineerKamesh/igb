@@ -22,6 +22,7 @@ import (
 	"github.com/EngineerKamesh/igb/igweb/shared/cogs/notify"
 	"github.com/EngineerKamesh/igb/igweb/shared/cogs/timeago"
 	"github.com/gorilla/mux"
+	"github.com/gorilla/sessions"
 	"github.com/isomorphicgo/isokit"
 )
 
@@ -57,6 +58,13 @@ func initializeDatastore(env *common.Env) {
 		log.Fatalf("Could not connect to the Redis Datastore! Encountered the following error when attempting to create a datastore instance: ", err)
 	}
 	env.DB = db
+}
+
+func initializeSessionstore(env *common.Env) {
+	if _, err := os.Stat("/tmp/igweb-sessions"); os.IsNotExist(err) {
+		os.Mkdir("/tmp/igweb-sessions", 711)
+	}
+	env.Store = sessions.NewFilesystemStore("/tmp/igweb-sessions", []byte(os.Getenv("IGWEB_HASH_KEY")))
 }
 
 // initializeCogs is responsible for initializing all the cogs that will be used in the web app
@@ -113,7 +121,7 @@ func registerRoutes(env *common.Env, r *mux.Router, hub *chat.Hub) {
 	r.Handle("/restapi/add-item-to-cart", endpoints.AddItemToShoppingCartEndpoint(env)).Methods("PUT")
 	r.Handle("/restapi/remove-item-from-cart", endpoints.RemoveItemFromShoppingCartEndpoint(env)).Methods("DELETE")
 	r.Handle("/restapi/contact-form", endpoints.ContactFormEndpoint(env)).Methods("POST")
-	r.Handle("/restapi/get-agent-info", endpoints.GetAgentInfoEndpoint(env, hub.ChatBot()))
+	r.Handle("/restapi/get-agent-info", endpoints.GetAgentInfoEndpoint(env, hub.ChatBot())).Methods("GET")
 
 	// Register Request Handler for the Websocket Connection used by the live chat feature
 	r.Handle("/ws", chat.ServeWs(hub))
@@ -138,6 +146,7 @@ func main() {
 	initializeTemplateSet(&env, false)
 	initializeCogs(env.TemplateSet)
 	initializeDatastore(&env)
+	initializeSessionstore(&env)
 
 	chatbot := bot.NewAgentCase()
 	hub := chat.NewHub(chatbot)

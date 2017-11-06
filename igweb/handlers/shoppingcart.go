@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/EngineerKamesh/igb/igweb/common"
-	"github.com/EngineerKamesh/igb/igweb/endpoints"
 	"github.com/EngineerKamesh/igb/igweb/shared/models"
 	"github.com/EngineerKamesh/igb/igweb/shared/templatedata"
 	"github.com/isomorphicgo/isokit"
@@ -18,7 +17,7 @@ func ShoppingCartHandler(env *common.Env) http.Handler {
 
 		var templateData *templatedata.ShoppingCart
 		var cart *models.ShoppingCart
-		igwSession, _ := endpoints.SessionStore.Get(r, "igweb-session")
+		igwSession, _ := env.Store.Get(r, "igweb-session")
 
 		if _, ok := igwSession.Values["shoppingCart"]; ok == true {
 			// Shopping cart exists in session

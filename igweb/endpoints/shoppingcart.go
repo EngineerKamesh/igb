@@ -5,21 +5,17 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"os"
 	"strings"
 
 	"github.com/EngineerKamesh/igb/igweb/common"
 	"github.com/EngineerKamesh/igb/igweb/shared/models"
-	"github.com/gorilla/sessions"
 )
-
-var SessionStore *sessions.FilesystemStore
 
 func GetShoppingCartItemsEndpoint(env *common.Env) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 		var cart *models.ShoppingCart
-		igwSession, _ := SessionStore.Get(r, "igweb-session")
+		igwSession, _ := env.Store.Get(r, "igweb-session")
 
 		if _, ok := igwSession.Values["shoppingCart"]; ok == true {
 			// Shopping cart exists in session
@@ -47,7 +43,7 @@ func GetShoppingCartItemsEndpoint(env *common.Env) http.Handler {
 func AddItemToShoppingCartEndpoint(env *common.Env) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
-		igwSession, _ := SessionStore.Get(r, "igweb-session")
+		igwSession, _ := env.Store.Get(r, "igweb-session")
 		decoder := json.NewDecoder(r.Body)
 		var m map[string]string
 		err := decoder.Decode(&m)
@@ -85,7 +81,7 @@ func AddItemToShoppingCartEndpoint(env *common.Env) http.Handler {
 func RemoveItemFromShoppingCartEndpoint(env *common.Env) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
-		igwSession, _ := SessionStore.Get(r, "igweb-session")
+		igwSession, _ := env.Store.Get(r, "igweb-session")
 		decoder := json.NewDecoder(r.Body)
 		var m map[string]string
 		err := decoder.Decode(&m)
@@ -125,13 +121,4 @@ func RemoveItemFromShoppingCartEndpoint(env *common.Env) http.Handler {
 		w.Write([]byte("OK"))
 
 	})
-}
-
-// TODO: move session store initialization to somewhere more appropriate
-func init() {
-	if _, err := os.Stat("/tmp/igweb-sessions"); os.IsNotExist(err) {
-		os.Mkdir("/tmp/igweb-sessions", 711)
-	}
-	SessionStore = sessions.NewFilesystemStore("/tmp/igweb-sessions", []byte(os.Getenv("IGWEB_HASH_KEY")))
-
 }
