@@ -21,10 +21,8 @@ RUN go get -u github.com/EngineerKamesh/igb
 # Build and install the minifier
 RUN go install github.com/tdewolff/minify
 
-# Transpile the client-side application code
-RUN cd $IGWEB_APP_ROOT/client; go get ./..; /go/bin/gopherjs build --verbose --tags clientonly -o $IGWEB_APP_ROOT/static/js/client.js
-RUN minify --mime="text/javascript" $IGWEB_APP_ROOT/static/js/client.js > $IGWEB_APP_ROOT/static/js/client.min.js
-RUN rm $IGWEB_APP_ROOT/static/js/client.js
+# Transpile and install the client-side application code
+RUN cd $IGWEB_APP_ROOT/client; go get ./..; /go/bin/gopherjs build -m --verbose --tags clientonly -o $IGWEB_APP_ROOT/static/js/client.min.js
 
 # Build and install the server-side application code
 RUN go install github.com/EngineerKamesh/igb/igweb
