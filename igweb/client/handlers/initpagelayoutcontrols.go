@@ -12,7 +12,7 @@ func InitializePageLayoutControls(env *common.Env) {
 	n := notify.NewNotify()
 	err := n.Start()
 	if err != nil {
-		println("Error encontered when attempting to start the notify cog: ", err)
+		println("Error encountered when attempting to start the notify cog: ", err)
 	}
 
 	liveChatIcon := env.Document.GetElementByID("liveChatIcon").(*dom.HTMLImageElement)
