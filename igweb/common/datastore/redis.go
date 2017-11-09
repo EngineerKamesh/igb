@@ -52,7 +52,6 @@ func (r *RedisDatastore) GetProducts() []*models.Product {
 		return nil
 	}
 
-	//	products := make([]*models.Product, 0)
 	products := make(models.Products, 0)
 
 	for i := 0; i < len(productKeys); i++ {
