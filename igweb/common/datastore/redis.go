@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"log"
+	"sort"
 	"strings"
 	"time"
 
@@ -51,7 +52,8 @@ func (r *RedisDatastore) GetProducts() []*models.Product {
 		return nil
 	}
 
-	products := make([]*models.Product, 0)
+	//	products := make([]*models.Product, 0)
+	products := make(models.Products, 0)
 
 	for i := 0; i < len(productKeys); i++ {
 
@@ -60,6 +62,7 @@ func (r *RedisDatastore) GetProducts() []*models.Product {
 		products = append(products, product)
 
 	}
+	sort.Sort(products)
 	return products
 }
 
@@ -107,15 +110,14 @@ func (r *RedisDatastore) GetProductsInShoppingCart(cart *models.ShoppingCart) []
 	products := r.GetProducts()
 	productsMap := r.GenerateProductsMap(products)
 
-	result := make([]*models.Product, 0)
+	result := make(models.Products, 0)
 	for _, v := range cart.Items {
 		product := &models.Product{}
 		product = productsMap[v.ProductSKU]
 		product.Quantity = v.Quantity
-
 		result = append(result, product)
 	}
-
+	sort.Sort(result)
 	return result
 
 }
