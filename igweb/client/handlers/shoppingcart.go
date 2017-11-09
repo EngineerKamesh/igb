@@ -16,14 +16,7 @@ import (
 
 func ShoppingCartHandler(env *common.Env) isokit.Handler {
 	return isokit.HandlerFunc(func(ctx context.Context) {
-		/*
-			routeVars := ctx.Value(isokit.RouteVarsKey("Vars")).(map[string]string)
-			if routeVars != nil {
-				println("route vars: ", routeVars)
-			}
-		*/
 		renderShoppingCartItems(env)
-
 	})
 }
 
