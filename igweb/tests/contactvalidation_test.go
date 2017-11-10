@@ -9,16 +9,16 @@ import (
 	"testing"
 )
 
-func TestContactForm(t *testing.T) {
+func TestContactFormValidation(t *testing.T) {
 
 	testURL := testHost + "/contact"
-	expectedTokenString := "The contact form has been successfully completed."
+	expectedTokenMap := map[string]string{"firstName": "The first name field is required.", "/": "The last name field is required.", "email": "The e-mail address entered has an improper syntax.", "messageBody": "The message area must be filled."}
 
 	form := url.Values{}
-	form.Add("firstName", "Isomorphic")
-	form.Add("lastName", "Gopher")
-	form.Add("email", "devnull@test.com")
-	form.Add("messageBody", "This is a message sent from the automated contact form test.")
+	form.Add("firstName", "")
+	form.Add("lastName", "")
+	form.Add("email", "devnull@g@o")
+	form.Add("messageBody", "")
 
 	req, err := http.NewRequest("POST", testURL, strings.NewReader(form.Encode()))
 
@@ -43,7 +43,10 @@ func TestContactForm(t *testing.T) {
 		t.Errorf("Failed to read response body contents with error: %s", err)
 	}
 
-	if strings.Contains(string(contents), expectedTokenString) == false {
-		t.Errorf("Could not find expected string token: \"%s\"", expectedTokenString)
+	for k, v := range expectedTokenMap {
+		if strings.Contains(string(contents), v) == false {
+			t.Errorf("Could not find expected string token: \"%s\" for field \"%s\"", v, k)
+		}
 	}
+
 }
