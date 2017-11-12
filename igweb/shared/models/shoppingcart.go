@@ -65,8 +65,6 @@ func (s *ShoppingCart) RemoveItem(sku string) bool {
 
 func (s *ShoppingCart) UpdateItemQuantity(sku string, quantity int) bool {
 
-	//, item *ShoppingCartItem
-
 	_, ok := s.Items[sku]
 	if ok {
 		s.Items[sku].Quantity += 1

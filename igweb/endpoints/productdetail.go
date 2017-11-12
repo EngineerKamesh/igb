@@ -13,8 +13,8 @@ func GetProductDetailEndpoint(env *common.Env) http.Handler {
 
 		vars := mux.Vars(r)
 		productTitle := vars["productTitle"]
-		products := env.DB.GetProductDetail(productTitle)
+		product := env.DB.GetProductDetail(productTitle)
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(products)
+		json.NewEncoder(w).Encode(product)
 	})
 }
