@@ -66,7 +66,6 @@ func addToCart(productSKU string) {
 	data, err := xhr.Send("PUT", "/restapi/add-item-to-cart", jsonData)
 	if err != nil {
 		println("Encountered error: ", err)
-		println(err)
 		notify.Error("Failed to add item to cart!")
 		return
 	}
@@ -89,7 +88,6 @@ func removeFromCart(env *common.Env, productSKU string) {
 	data, err := xhr.Send("DELETE", "/restapi/remove-item-from-cart", jsonData)
 	if err != nil {
 		println("Encountered error: ", err)
-		println(err)
 		notify.Error("Failed to remove item from cart!")
 		return
 	}
