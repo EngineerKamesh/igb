@@ -31,6 +31,21 @@ func main() {
 		casper.Get("test").Call("assertSelectorHasText", "#alertify-logs .alertify-log-success", "Item added to cart", "Display Notify Cog when item added to shopping cart.")
 	})
 
+	casper.Call("wait", 450, func() {
+		casper.Call("capture", "screenshots/notify_cog_test.png")
+	})
+
+	// Navigate to Shopping Cart page
+	casper.Call("then", func() {
+		casper.Call("click", "a[href^='/shopping-cart']")
+
+	})
+
+	// Remove product from shopping cart
+	casper.Call("then", func() {
+		casper.Call("click", ".removeFromCartButton:first-child")
+	})
+
 	casper.Call("run", func() {
 		casper.Get("test").Call("done")
 	})

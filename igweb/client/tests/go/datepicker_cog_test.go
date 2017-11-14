@@ -26,7 +26,7 @@ func main() {
 	casper.Call("then", func() {
 		casper.Call("click", "#byDateInput")
 		casper.Call("capture", "screenshots/datepicker_cog_test.png")
-		casper.Get("test").Call("assertVisible", ".pika-single", "Display datepicker cog.")
+		casper.Get("test").Call("assertVisible", ".pika-single", "Display Datepicker Cog.")
 	})
 
 	casper.Call("run", func() {
