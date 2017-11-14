@@ -21,12 +21,12 @@ func main() {
 	viewportParams.Height = 960
 	casper.Get("options").Set("viewportSize", viewportParams)
 
-	casper.Get("test").Call("begin", "Carousel Cog Test", 1, func(test *js.Object) {
+	casper.Get("test").Call("begin", "Live Clock Cog Test", 1, func(test *js.Object) {
 		casper.Call("start", "http://localhost:8080/index", wait)
 	})
 
 	casper.Call("then", func() {
-		casper.Call("wait", 999, func() {
+		casper.Call("wait", 1008, func() {
 
 			localZonename, localOffset := time.Now().In(time.Local).Zone()
 			const layout = time.RFC1123
