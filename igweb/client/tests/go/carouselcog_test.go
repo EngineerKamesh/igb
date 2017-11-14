@@ -1,14 +1,12 @@
 package main
 
 import (
-	"time"
-
 	"github.com/EngineerKamesh/igb/igweb/client/tests/go/caspertest"
 	"github.com/gopherjs/gopherjs/js"
 )
 
 var wait = js.MakeFunc(func(this *js.Object, arguments []*js.Object) interface{} {
-	this.Call("waitForSelector", "#myLiveClock div")
+	this.Call("waitForSelector", "#carousel div")
 	return nil
 })
 
@@ -26,21 +24,9 @@ func main() {
 	})
 
 	casper.Call("then", func() {
-		casper.Call("wait", 999, func() {
+		casper.Call("capture", "screenshots/carousel_cog_test.png")
+		casper.Get("test").Call("assertResourceExists", "watch.jpg", "Display carousel cog.")
 
-			localZonename, localOffset := time.Now().In(time.Local).Zone()
-			const layout = time.RFC1123
-			var location *time.Location
-			location = time.FixedZone(localZonename, localOffset)
-			t := time.Now()
-			currentTime := t.In(location).Format(layout)
-			casper.Get("test").Call("assertSelectorHasText", "#myLiveClock div", currentTime, "Display live clock for local timezone.")
-
-		})
-	})
-
-	casper.Call("then", func() {
-		casper.Call("capture", "screenshots/liveclock_cog_test.png")
 	})
 
 	casper.Call("run", func() {
