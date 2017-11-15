@@ -717,6 +717,7 @@ li:last-child {
 
 	.introWelcomeMessage {
 		width: 96%;
+		max-width: initial;
 	}
 
 	#carousel {
