@@ -620,6 +620,40 @@ li:last-child {
 
 /* Begin Index */
 
+.welcomeHeading {
+	margin-top: 0px;
+	padding-top: 0px !important;
+	font-size: 18pt;
+}
+
+#introductionContainer {
+	text-align: center;
+	border: 0px solid red;
+	width: 96%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#bookCoverContainer {
+	float: left;
+	clear: none;
+	width: 420px;
+	margin-right: 9px;
+	margin-bottom: 36px;
+}
+
+.introWelcomeMessage {
+	border: 0px solid red;
+	float: left;
+	max-width: 810px;
+	clear: right;
+	margin-bottom: 18px;
+}
+
+.introWelcomeMessage p {
+	text-align: left;
+	font-size: 12pt;
+}
 #carousel {
 	margin:auto;
 	width: 1080px;
@@ -629,6 +663,22 @@ li:last-child {
 
 .liveclockTime {
 	font-size: 14pt;
+}
+
+#socialMediaContainer {
+	border: 0px solid red;
+	width: 324px;
+	margin-top: 27px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.socialMediaTile {
+	border: 0px solid red;
+	float: left;
+	width: 72px;
+	height: 63px;
+	margin-right: 36px;
 }
 
 /* End Index */
@@ -650,3 +700,229 @@ li:last-child {
 
 
 /* End Chat */
+
+
+	.formError {
+		margin-left: 0px;
+	}
+
+
+
+/* Tablet Portrait and Landscape */
+@media only screen and (min-width: 768px) and (max-width : 1400px)  { 
+
+	#bookCoverContainer {
+		width: 100%;
+	}
+
+	.introWelcomeMessage {
+		width: 96%;
+	}
+
+	#carousel {
+		width: 96%;
+	}
+
+	#productsContainer {
+		width: 100%;
+	}
+
+	.productCard {
+		margin-right: 15px;
+	}
+
+	.productSummaryDetail {
+		width: 96%;
+	}
+
+	.productDetailImageContainer {
+		width: 100%;
+		height: initial;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 9px;
+		text-align: center;
+	}
+
+	.formError {
+		margin-left: 162px;
+	}
+
+	.formContainer {
+		width: 72%;
+	}
+
+
+	.gopherImageContainer {
+		float: left;
+		margin: auto;
+	}
+
+	.gopherDetailsContainer {
+		float: left;
+		width: 360px;
+		margin-left: 36px;
+		margin-top: -18px;
+	}
+
+	#gopherTeamContainer {
+		width: 96%;
+	}
+
+}
+
+
+/* mini Tablet */
+@media only screen and (min-width: 641px) and (max-width : 767px)  { 
+
+	#bookCoverContainer {
+		width: 100%;
+	}
+
+
+	.introWelcomeMessage {
+		width: 96%;
+	}
+
+
+	.productSummaryDetail {
+		width: 96%;
+	}
+
+	.productDetailImageContainer {
+		width: 100%;
+		height: initial;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 9px;
+		text-align: center;
+	}
+
+	.formError {
+		margin-left: 162px;
+	}
+
+	.formContainer {
+		width: 100%;
+	}
+
+
+	.gopherImageContainer {
+		float: none;
+		margin: auto;
+		width: 96%;
+	}
+
+	.gopherDetailsContainer {
+		float: none;
+		width: 540px;
+		margin: 9px;
+	}
+
+}
+
+
+/* smartphones */
+@media screen and (max-width: 640px), (max-device-width: 640px) {
+
+	h2 {
+		width: 96%;
+	}
+
+	#bookCoverContainer {
+		margin: 0px;
+		width: 100%;
+		margin-bottom: 36px;
+	}
+	#bookCover {
+		width: 346px;
+		border: 0px solid red;
+	}
+
+	.introWelcomeMessage {
+		width: 96%;
+	}
+
+	.introWelcomeMessage img {
+		width: 311px;
+	}
+
+
+	#carousel {
+		width: 100%;
+		height: 339px;
+		margin-bottom: 9px;
+
+	}
+
+	#chatbox {
+		width: 100%;
+	}
+
+	#chatboxContainer {
+		right: 0px;
+		bottom: 36px;
+	}
+
+	.productDetailImageContainer {
+		height: initial;
+		width: 96%;
+	}
+
+	.gopherImageContainer {
+		float: none;
+		margin: auto;
+		width: 96%;
+	}
+
+	.gopherDetailsContainer {
+		float: none;
+		width: 336px;
+	}
+
+	#contactForm {
+		margin-left: 0px;
+	}
+
+	#contactForm #messageBody {
+	}
+
+	.chatboxHeaderTitle {
+		font-size: 12pt;
+		z-index: 3;
+	}
+
+	#chatboxCloseControl {
+		top: -14px;
+		z-index: 9;
+	}
+
+
+	.formError {
+		margin-left: 0px;
+	}
+
+	.formContainer {
+		width: 60%;
+	}
+
+
+}
+
+/* mini smartphones */
+@media screen and (max-width: 300px), (max-device-width: 570px) {
+
+	.productCard {
+		width: 96%;
+	}
+
+	.formError {
+		margin-left: 0px;
+	}
+
+	.formContainer {
+		width: 70%;
+	}
+
+}
+
