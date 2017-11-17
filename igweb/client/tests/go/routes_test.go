@@ -28,6 +28,7 @@ func main() {
 		casper.Call("start", "http://localhost:8080", wait)
 	})
 
+	// Test each route on the website, and verify that the expected token string is found in the rendered content
 	for _, r := range routes {
 		func(r string) {
 			casper.Call("then", func() {

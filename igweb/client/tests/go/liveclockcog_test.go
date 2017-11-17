@@ -25,6 +25,7 @@ func main() {
 		casper.Call("start", "http://localhost:8080/index", wait)
 	})
 
+	// Verify that the live clock shows the current time for the local time zone
 	casper.Call("then", func() {
 		casper.Call("wait", 1008, func() {
 

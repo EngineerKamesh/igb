@@ -23,6 +23,7 @@ func main() {
 		casper.Call("start", "http://localhost:8080/index", wait)
 	})
 
+	// Verify that the carousel cog has been loaded.
 	casper.Call("then", func() {
 		casper.Call("capture", "screenshots/carousel_cog_test.png")
 		casper.Get("test").Call("assertResourceExists", "watch.jpg", "Display carousel cog.")

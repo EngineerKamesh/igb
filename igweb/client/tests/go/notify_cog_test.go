@@ -23,10 +23,12 @@ func main() {
 		casper.Call("start", "http://localhost:8080/products", wait)
 	})
 
+	// Add an item to the shopping cart
 	casper.Call("then", func() {
 		casper.Call("click", ".addToCartButton:nth-child(1)")
 	})
 
+	// Verify that the notification has been displayed
 	casper.Call("then", func() {
 		casper.Get("test").Call("assertSelectorHasText", "#alertify-logs .alertify-log-success", "Item added to cart", "Display Notify Cog when item added to shopping cart.")
 	})

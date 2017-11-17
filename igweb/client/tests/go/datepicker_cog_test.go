@@ -23,6 +23,7 @@ func main() {
 		casper.Call("start", "http://localhost:8080/contact", wait)
 	})
 
+	// Verify that the date picker is activated upon clicking the date input field
 	casper.Call("then", func() {
 		casper.Call("click", "#byDateInput")
 		casper.Call("capture", "screenshots/datepicker_cog_test.png")

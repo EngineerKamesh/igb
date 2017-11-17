@@ -44,29 +44,34 @@ func main() {
 		casper.Call("start", "http://localhost:8080/index", wait)
 	})
 
+	// Activate the live chat feature
 	casper.Call("then", func() {
 		casper.Call("click", "#livechatContainer img")
 	})
 
 	casper.Call("then", waitChat)
 
+	// Verify that the chat box has opened up
 	casper.Call("then", func() {
 		casper.Call("capture", "screenshots/livechat_test_chatbox_open.png")
 		casper.Get("test").Call("assertSelectorHasText", "#chatboxTitle span", "Chat with", "Display chatbox.")
 	})
 
+	// Ask a question to the live chat bot, and verify that the chat bot has provided an answer
 	casper.Call("then", askQuestion)
 	casper.Call("then", func() {
 		casper.Call("capture", "screenshots/livechat_test_answer_question.png")
 		casper.Get("test").Call("assertSelectorHasText", "#chatboxConversationContainer", "Isomorphic Go is the methodology to create isomorphic web applications", "Display the answer to \"What is Isomorphic Go?\"")
 	})
 
+	// Navigate to another web page (the conversation should be retained)
 	casper.Call("then", func() {
 		casper.Call("click", "a[href^='/about']")
 	})
 
 	casper.Call("then", wait)
 
+	// Verify that the conversation has been retained after navigating to another web page
 	casper.Call("then", func() {
 		casper.Call("capture", "screenshots/livechat_test_conversation_retained.png")
 		casper.Get("test").Call("assertSelectorHasText", "#chatboxConversationContainer", "Isomorphic Go is the methodology to create isomorphic web applications", "Verify that the conversation is retained when navigating to another page in the website.")

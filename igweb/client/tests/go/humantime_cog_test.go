@@ -26,6 +26,7 @@ func main() {
 		casper.Call("start", "http://localhost:8080/about", wait)
 	})
 
+	// Verify the human time representation of Molly's start date
 	casper.Call("then", func() {
 		mollysStartDate := time.Date(2017, 5, 24, 17, 9, 0, 0, time.UTC)
 		mollysStartDateInHumanTime := humanize.Time(mollysStartDate)

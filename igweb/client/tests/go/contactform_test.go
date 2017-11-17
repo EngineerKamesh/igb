@@ -18,6 +18,7 @@ var wait = js.MakeFunc(func(this *js.Object, arguments []*js.Object) interface{}
 	return nil
 })
 
+// Fill out the contact form with a poorly formatted e-mail address
 var fillOutContactFormWithPoorlyFormattedEmailAddress = js.MakeFunc(func(this *js.Object, arguments []*js.Object) interface{} {
 	params := &FormParams{Object: js.Global.Get("Object").New()}
 	params.FirstName = "Isomorphic"
@@ -28,6 +29,7 @@ var fillOutContactFormWithPoorlyFormattedEmailAddress = js.MakeFunc(func(this *j
 	return nil
 })
 
+// Fill out the contact form partially
 var fillOutContactFormPartially = js.MakeFunc(func(this *js.Object, arguments []*js.Object) interface{} {
 	params := &FormParams{Object: js.Global.Get("Object").New()}
 	params.FirstName = "Isomorphic"
@@ -38,6 +40,7 @@ var fillOutContactFormPartially = js.MakeFunc(func(this *js.Object, arguments []
 	return nil
 })
 
+// Fill out the contact form completely
 var fillOutContactFormCompletely = js.MakeFunc(func(this *js.Object, arguments []*js.Object) interface{} {
 	params := &FormParams{Object: js.Global.Get("Object").New()}
 	params.FirstName = "Isomorphic"
@@ -61,12 +64,14 @@ func main() {
 		casper.Call("start", "http://localhost:8080/contact", wait)
 	})
 
+	// Test validation for poorly formatted e-mail address
 	casper.Call("then", fillOutContactFormWithPoorlyFormattedEmailAddress)
 	casper.Call("then", func() {
 		casper.Call("capture", "screenshots/contactform_test_invalid_email_error_message.png")
 		casper.Get("test").Call("assertSelectorHasText", "#emailError", "The e-mail address entered has an improper syntax", "Display e-mail address syntax error when poorly formatted e-mail entered.")
 	})
 
+	// Test validation when contact form is filled out partially
 	casper.Call("then", fillOutContactFormPartially)
 	casper.Call("then", func() {
 		casper.Call("capture", "screenshots/contactform_test_partially_filled_form_errors.png")
@@ -74,6 +79,7 @@ func main() {
 		casper.Get("test").Call("assertSelectorHasText", "#messageBodyError", "The message area must be filled.", "Display error message when the message body text area has not been filled out.")
 	})
 
+	// Test form submission when contact form is filled out completely
 	casper.Call("then", fillOutContactFormCompletely)
 	casper.Call("then", func() {
 		casper.Call("capture", "screenshots/contactform_confirmation_message.png")
