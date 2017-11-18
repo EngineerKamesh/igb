@@ -51,7 +51,7 @@ func initializeTemplateSet(env *common.Env, oneTimeStaticAssetsGeneration bool) 
 	env.TemplateSet = ts
 }
 
-// initializeDatastore is responsible for initializing the datastore for our web application's data persistence needs
+// initializeDatastore is responsible for initializing the datastore for the web app's data persistence needs
 func initializeDatastore(env *common.Env) {
 	db, err := datastore.NewDatastore(datastore.REDIS, DBConnectionString)
 	if err != nil {
@@ -60,6 +60,7 @@ func initializeDatastore(env *common.Env) {
 	env.DB = db
 }
 
+// initializeSessionstore is responsible for initializing the sessionstore for the web app's session persistence needs
 func initializeSessionstore(env *common.Env) {
 	if _, err := os.Stat("/tmp/igweb-sessions"); os.IsNotExist(err) {
 		os.Mkdir("/tmp/igweb-sessions", 711)
@@ -185,6 +186,7 @@ func init() {
 
 }
 
+// generateStaticAssetsAndExit will create static bundles for the web app's templates, and its CSS and JS source files
 func generateStaticAssetsAndExit(env *common.Env) {
 
 	fmt.Print("Generating static assets...")
