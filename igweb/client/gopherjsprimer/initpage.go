@@ -4,7 +4,7 @@ import (
 	"honnef.co/go/js/dom"
 )
 
-// InitializeEventHandlers sets up the event handlers for all the elements on the web page
+// InitializePage sets up event handlers for the interactive elements on the page
 func InitializePage() {
 
 	d := dom.GetWindow().Document()
