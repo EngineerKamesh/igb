@@ -73,7 +73,6 @@ func (n *Notify) Start() error {
 		return errors.New("The notification cog can be instantiated only once.")
 	}
 
-	n.SetID(n.divContainerID)
 	n.alertify = js.Global.Get("alertify")
 
 	n.StartListening()
