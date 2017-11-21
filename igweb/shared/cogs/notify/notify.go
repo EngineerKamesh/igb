@@ -12,14 +12,12 @@ import (
 
 var cogType reflect.Type
 var alreadyStarted bool
-var JS = js.Global
 
 type Notify struct {
 	cog.UXCog
 	alertify                         *js.Object
 	successNotificationEventListener func(*js.Object)
 	errorNotificationEventListener   func(*js.Object)
-	divContainerID                   string
 }
 
 func NewNotify() *Notify {
