@@ -66,7 +66,7 @@ func main() {
 
 	// Test validation for poorly formatted e-mail address
 	casper.Call("then", fillOutContactFormWithPoorlyFormattedEmailAddress)
-	casper.Call("then", func() {
+	casper.Call("wait", 450, func() {
 		casper.Call("capture", "screenshots/contactform_test_invalid_email_error_message.png")
 		casper.Get("test").Call("assertSelectorHasText", "#emailError", "The e-mail address entered has an improper syntax", "Display e-mail address syntax error when poorly formatted e-mail entered.")
 	})
