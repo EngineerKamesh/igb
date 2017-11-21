@@ -77,6 +77,10 @@ func main() {
 		casper.Get("test").Call("assertSelectorHasText", "#chatboxConversationContainer", "Isomorphic Go is the methodology to create isomorphic web applications", "Verify that the conversation is retained when navigating to another page in the website.")
 	})
 
+	casper.Call("then", func() {
+		casper.Call("click", "#chatboxCloseControl")
+	})
+
 	casper.Call("run", func() {
 		casper.Get("test").Call("done")
 	})
