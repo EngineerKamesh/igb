@@ -37,7 +37,7 @@ func main() {
 	})
 
 	// Verify product added and quantity
-	casper.Call("wait", 108, func() {
+	casper.Call("wait", 207, func() {
 		casper.Get("test").Call("assertTextExists", "Swiss Army Knife", "Display correct product in shopping cart.")
 	})
 
