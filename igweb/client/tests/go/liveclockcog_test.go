@@ -27,15 +27,17 @@ func main() {
 
 	// Verify that the live clock shows the current time for the local time zone
 	casper.Call("then", func() {
-		casper.Call("wait", 1008, func() {
+		casper.Call("wait", 1000, func() {
 
 			localZonename, localOffset := time.Now().In(time.Local).Zone()
 			const layout = time.RFC1123
 			var location *time.Location
 			location = time.FixedZone(localZonename, localOffset)
-			t := time.Now()
-			currentTime := t.In(location).Format(layout)
-			casper.Get("test").Call("assertSelectorHasText", "#myLiveClock div", currentTime, "Display live clock for local timezone.")
+			casper.Call("wait", 1000, func() {
+				t := time.Now()
+				currentTime := t.In(location).Format(layout)
+				casper.Get("test").Call("assertSelectorHasText", "#myLiveClock div", currentTime, "Display live clock for local timezone.")
+			})
 
 		})
 	})
