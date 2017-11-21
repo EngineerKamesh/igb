@@ -29,7 +29,7 @@ func main() {
 	})
 
 	// Verify that the notification has been displayed
-	casper.Call("then", func() {
+	casper.Call("wait", 450, func() {
 		casper.Get("test").Call("assertSelectorHasText", "#alertify-logs .alertify-log-success", "Item added to cart", "Display Notify Cog when item added to shopping cart.")
 	})
 
