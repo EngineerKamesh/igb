@@ -29,10 +29,9 @@ func checkRoute(t *testing.T, route string, expectedToken string) {
 
 func TestServerSideRoutes(t *testing.T) {
 
-	routes := []string{"", "/", "/index", "/products", "/product-detail/swiss-army-knife", "/about", "/contact", "/shopping-cart"}
-	tokenMap := map[string]string{"": "IGWEB", "/": "IGWEB", "/index": "IGWEB", "/products": "Add To Cart", "/product-detail/swiss-army-knife": "Swiss Army Knife", "/about": "Molly", "/contact": "Enter your message for us here"}
+	routesTokenMap := map[string]string{"": "IGWEB", "/": "IGWEB", "/index": "IGWEB", "/products": "Add To Cart", "/product-detail/swiss-army-knife": "Swiss Army Knife", "/about": "Molly", "/contact": "Enter your message for us here"}
 
-	for _, r := range routes {
-		checkRoute(t, r, tokenMap[r])
+	for route, expectedString := range routesTokenMap {
+		checkRoute(t, route, expectedString)
 	}
 }
