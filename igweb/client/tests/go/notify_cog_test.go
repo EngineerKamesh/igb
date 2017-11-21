@@ -44,7 +44,7 @@ func main() {
 	})
 
 	// Remove product from shopping cart
-	casper.Call("then", func() {
+	casper.Call("wait", 450, func() {
 		casper.Call("click", ".removeFromCartButton:first-child")
 	})
 
