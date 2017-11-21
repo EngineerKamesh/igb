@@ -6,7 +6,7 @@ import (
 )
 
 var wait = js.MakeFunc(func(this *js.Object, arguments []*js.Object) interface{} {
-	this.Call("waitForSelector", "#carousel div")
+	this.Call("waitForSelector", "#carousel")
 	return nil
 })
 
