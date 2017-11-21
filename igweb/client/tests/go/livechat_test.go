@@ -59,7 +59,7 @@ func main() {
 
 	// Ask a question to the live chat bot, and verify that the chat bot has provided an answer
 	casper.Call("then", askQuestion)
-	casper.Call("then", func() {
+	casper.Call("wait", 450, func() {
 		casper.Call("capture", "screenshots/livechat_test_answer_question.png")
 		casper.Get("test").Call("assertSelectorHasText", "#chatboxConversationContainer", "Isomorphic Go is the methodology to create isomorphic web applications", "Display the answer to \"What is Isomorphic Go?\"")
 	})
@@ -72,7 +72,7 @@ func main() {
 	casper.Call("then", wait)
 
 	// Verify that the conversation has been retained after navigating to another web page
-	casper.Call("then", func() {
+	casper.Call("wait", 450, func() {
 		casper.Call("capture", "screenshots/livechat_test_conversation_retained.png")
 		casper.Get("test").Call("assertSelectorHasText", "#chatboxConversationContainer", "Isomorphic Go is the methodology to create isomorphic web applications", "Verify that the conversation is retained when navigating to another page in the website.")
 	})
