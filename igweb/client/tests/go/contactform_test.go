@@ -51,9 +51,9 @@ var fillOutContactFormCompletely = js.MakeFunc(func(this *js.Object, arguments [
 	return nil
 })
 
-func main() {
+var casper = js.Global.Get("casper")
 
-	casper := js.Global.Get("casper")
+func main() {
 
 	viewportParams := &caspertest.ViewportParams{Object: js.Global.Get("Object").New()}
 	viewportParams.Width = 1440

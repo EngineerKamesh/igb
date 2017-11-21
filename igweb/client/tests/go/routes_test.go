@@ -12,12 +12,12 @@ var wait = js.MakeFunc(func(this *js.Object, arguments []*js.Object) interface{}
 	return nil
 })
 
+var casper = js.Global.Get("casper")
+
 func main() {
 
 	routes := []string{"/", "/index", "/products", "/product-detail/swiss-army-knife", "/about", "/contact", "/shopping-cart"}
 	tokenMap := map[string]string{"": "IGWEB", "/": "IGWEB", "/index": "IGWEB", "/products": "Add To Cart", "/product-detail/swiss-army-knife": "Swiss Army Knife", "/about": "Molly", "/contact": "Contact", "/shopping-cart": "Shopping Cart"}
-
-	casper := js.Global.Get("casper")
 
 	viewportParams := &caspertest.ViewportParams{Object: js.Global.Get("Object").New()}
 	viewportParams.Width = 1440
