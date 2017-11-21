@@ -41,7 +41,9 @@ func main() {
 				routeName := strings.Replace(r, `/`, "", -1)
 				screenshotName := "route_render_test_" + routeName + ".png"
 				casper.Call("capture", "screenshots/"+screenshotName)
-				casper.Get("test").Call("assertTextExists", tokenMap[r], "Expected text \""+tokenMap[r]+"\", in body of web page, when accessing route: "+r)
+				casper.Call("wait", 450, func() {
+					casper.Get("test").Call("assertTextExists", tokenMap[r], "Expected text \""+tokenMap[r]+"\", in body of web page, when accessing route: "+r)
+				})
 			})
 		}(r)
 	}
