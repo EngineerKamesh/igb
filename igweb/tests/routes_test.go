@@ -7,8 +7,6 @@ import (
 	"testing"
 )
 
-var testHost string = "http://localhost:8080"
-
 func checkRoute(t *testing.T, route string, expectedToken string) {
 
 	testURL := testHost + route
