@@ -16,8 +16,7 @@ var casper = js.Global.Get("casper")
 
 func main() {
 
-	routes := []string{"/", "/index", "/products", "/product-detail/swiss-army-knife", "/about", "/contact", "/shopping-cart"}
-	tokenMap := map[string]string{"": "IGWEB", "/": "IGWEB", "/index": "IGWEB", "/products": "Add To Cart", "/product-detail/swiss-army-knife": "Swiss Army Knife", "/about": "Molly", "/contact": "Contact", "/shopping-cart": "Shopping Cart"}
+	routesTokenMap := map[string]string{"/": "IGWEB", "/index": "IGWEB", "/products": "Add To Cart", "/product-detail/swiss-army-knife": "Swiss Army Knife", "/about": "Molly", "/contact": "Contact", "/shopping-cart": "Shopping Cart"}
 
 	viewportParams := &caspertest.ViewportParams{Object: js.Global.Get("Object").New()}
 	viewportParams.Width = 1440
@@ -29,23 +28,23 @@ func main() {
 	})
 
 	// Test each route on the website, and verify that the expected token string is found in the rendered content
-	for _, r := range routes {
-		func(r string) {
+	for route, expectedString := range routesTokenMap {
+		func(route, expectedString string) {
 			casper.Call("then", func() {
-				casper.Call("click", "a[href^='"+r+"']")
+				casper.Call("click", "a[href^='"+route+"']")
 			})
 
 			casper.Call("then", wait)
 
 			casper.Call("then", func() {
-				routeName := strings.Replace(r, `/`, "", -1)
+				routeName := strings.Replace(route, `/`, "", -1)
 				screenshotName := "route_render_test_" + routeName + ".png"
 				casper.Call("capture", "screenshots/"+screenshotName)
 				casper.Call("wait", 450, func() {
-					casper.Get("test").Call("assertTextExists", tokenMap[r], "Expected text \""+tokenMap[r]+"\", in body of web page, when accessing route: "+r)
+					casper.Get("test").Call("assertTextExists", expectedString, "Expected text \""+expectedString+"\", in body of web page, when accessing route: "+route)
 				})
 			})
-		}(r)
+		}(route, expectedString)
 	}
 
 	casper.Call("run", func() {
