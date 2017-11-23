@@ -5,14 +5,6 @@ import (
 	"github.com/gopherjs/gopherjs/js"
 )
 
-type ChatFormParams struct {
-	*js.Object
-	FirstName   string `js:"firstName"`
-	LastName    string `js:"lastName"`
-	Email       string `js:"email"`
-	MessageBody string `js:"messageBody"`
-}
-
 var wait = js.MakeFunc(func(this *js.Object, arguments []*js.Object) interface{} {
 	this.Call("waitForSelector", "#primaryContent")
 	return nil
@@ -30,7 +22,6 @@ var askQuestion = js.MakeFunc(func(this *js.Object, arguments []*js.Object) inte
 	return nil
 })
 
-var currentQuestion = ""
 var casper = js.Global.Get("casper")
 
 func main() {
@@ -40,7 +31,7 @@ func main() {
 	viewportParams.Height = 960
 	casper.Get("options").Set("viewportSize", viewportParams)
 
-	casper.Get("test").Call("begin", "Live Chat Test", 3, func(test *js.Object) {
+	casper.Get("test").Call("begin", "Live Chat Test Suite", 3, func(test *js.Object) {
 		casper.Call("start", "http://localhost:8080/index", wait)
 	})
 
@@ -52,7 +43,7 @@ func main() {
 	casper.Call("then", waitChat)
 
 	// Verify that the chat box has opened up
-	casper.Call("then", func() {
+	casper.Call("wait", 1800, func() {
 		casper.Call("capture", "screenshots/livechat_test_chatbox_open.png")
 		casper.Get("test").Call("assertSelectorHasText", "#chatboxTitle span", "Chat with", "Display chatbox.")
 	})

@@ -19,7 +19,7 @@ func main() {
 	viewportParams.Height = 960
 	casper.Get("options").Set("viewportSize", viewportParams)
 
-	casper.Get("test").Call("begin", "Date Picker Cog Test", 1, func(test *js.Object) {
+	casper.Get("test").Call("begin", "Date Picker Cog Test Suite", 1, func(test *js.Object) {
 		casper.Call("start", "http://localhost:8080/contact", wait)
 	})
 

@@ -23,7 +23,7 @@ func main() {
 	viewportParams.Height = 960
 	casper.Get("options").Set("viewportSize", viewportParams)
 
-	casper.Get("test").Call("begin", "Routes Test", 7, func(test *js.Object) {
+	casper.Get("test").Call("begin", "Client-Side Routes Test Suite", 7, func(test *js.Object) {
 		casper.Call("start", "http://localhost:8080", wait)
 	})
 
@@ -34,13 +34,11 @@ func main() {
 				casper.Call("click", "a[href^='"+route+"']")
 			})
 
-			casper.Call("then", wait)
-
 			casper.Call("then", func() {
-				routeName := strings.Replace(route, `/`, "", -1)
-				screenshotName := "route_render_test_" + routeName + ".png"
-				casper.Call("capture", "screenshots/"+screenshotName)
-				casper.Call("wait", 450, func() {
+				casper.Call("wait", 1800, func() {
+					routeName := strings.Replace(route, `/`, "", -1)
+					screenshotName := "route_render_test_" + routeName + ".png"
+					casper.Call("capture", "screenshots/"+screenshotName)
 					casper.Get("test").Call("assertTextExists", expectedString, "Expected text \""+expectedString+"\", in body of web page, when accessing route: "+route)
 				})
 			})

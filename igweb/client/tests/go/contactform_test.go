@@ -60,7 +60,7 @@ func main() {
 	viewportParams.Height = 960
 	casper.Get("options").Set("viewportSize", viewportParams)
 
-	casper.Get("test").Call("begin", "Contact Form Test", 4, func(test *js.Object) {
+	casper.Get("test").Call("begin", "Contact Form Test Suite", 4, func(test *js.Object) {
 		casper.Call("start", "http://localhost:8080/contact", wait)
 	})
 
@@ -73,7 +73,7 @@ func main() {
 
 	// Test validation when contact form is filled out partially
 	casper.Call("then", fillOutContactFormPartially)
-	casper.Call("then", func() {
+	casper.Call("wait", 450, func() {
 		casper.Call("capture", "screenshots/contactform_test_partially_filled_form_errors.png")
 		casper.Get("test").Call("assertSelectorHasText", "#lastNameError", "The last name field is required.", "Display error message when the last name field has not been filled out.")
 		casper.Get("test").Call("assertSelectorHasText", "#messageBodyError", "The message area must be filled.", "Display error message when the message body text area has not been filled out.")
@@ -81,7 +81,7 @@ func main() {
 
 	// Test form submission when contact form is filled out completely
 	casper.Call("then", fillOutContactFormCompletely)
-	casper.Call("then", func() {
+	casper.Call("wait", 450, func() {
 		casper.Call("capture", "screenshots/contactform_confirmation_message.png")
 		casper.Get("test").Call("assertSelectorHasText", "#primaryContent h1", "Confirmation", "Display confirmation message after submitting contact form.")
 	})
