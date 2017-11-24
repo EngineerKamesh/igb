@@ -24,12 +24,12 @@ func main() {
 	})
 
 	// Verify that the carousel cog has been loaded.
-	casper.Call("then", func() {
-		casper.Call("capture", "screenshots/carousel_cog_test.png")
+	casper.Call("wait", 1800, func() {
+		casper.Get("test").Call("assertResourceExists", "watch.jpg", "Display carousel cog.")
 	})
 
-	casper.Call("wait", 450, func() {
-		casper.Get("test").Call("assertResourceExists", "watch.jpg", "Display carousel cog.")
+	casper.Call("then", func() {
+		casper.Call("capture", "screenshots/carousel_cog_test.png")
 	})
 
 	casper.Call("run", func() {
