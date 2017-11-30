@@ -65,6 +65,7 @@ func initializePage(env *common.Env) {
 	}
 }
 
+// registerRoutes is used to register the client-side routes
 func registerRoutes(env *common.Env) {
 
 	r := isokit.NewRouter()
