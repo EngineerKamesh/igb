@@ -15,6 +15,8 @@ A live demo of IGWEB is available at [http://igweb.kamesh.com](http://igweb.kame
 
 You can install and run IGWEB, as a multi-container Docker application using the following steps:
 
+`go get -u github.com/EngineerKamesh/igb`
+
 `cd ${GOPATH}/src/github.com/EngineerKamesh/igb/igweb`
 
 `docker-compose build`
@@ -30,9 +32,3 @@ Alternatively, you may install IGWEB on your system, using the [standalone instr
 ### Topics Covered
 
 A list of topics covered in the book, along with some animated gif previews, [is available here](Previews.md).
-
-
-
-
-
-
