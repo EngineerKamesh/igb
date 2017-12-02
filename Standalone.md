@@ -37,7 +37,7 @@ You should see the GopherJS version.
 
 ### Install IsoKit
 `go get -u github.com/isomorphicgo/isokit`
-\
+
 
 ### Install UXToolkit
 `go get -u github.com/uxtoolkit/cog`
