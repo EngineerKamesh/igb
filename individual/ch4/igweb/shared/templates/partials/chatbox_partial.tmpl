@@ -1,0 +1,26 @@
+<div id="chatbox">
+	<div id="chatboxHeaderBar" class="chatboxHeader">
+		<div id="chatboxTitle" class="chatboxHeaderTitle"><span>Chat with {{.AgentName}}</span></div>
+		<div id="chatboxCloseControl">X</div>
+	</div>
+
+	<div class="chatboxAgentInfo">
+		<div class="chatboxAgentThumbnail"><img src="{{.AgentThumbImagePath}}" height="81px"></div>
+		<div class="chatboxAgentName">{{.AgentName}}</div>
+		<div class="chatboxAgentTitle">{{.AgentTitle}}</div>
+	</div>
+
+	<div id="chatboxConversationContainer">
+
+	</div>
+
+	<div id="chatboxMsgInputContainer">
+		<input type="text" id="chatboxInputField" placeholder="Type your message here...">
+
+		</input>
+	</div>
+
+	<div class="chatboxFooter">
+		<a href="http://www.isomorphicgo.org" target="_blank">Powered by Isomorphic Go</a>
+	</div>
+</div>
