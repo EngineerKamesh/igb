@@ -1,0 +1,23 @@
+<h1>About</h1>
+
+<div id="gopherTeamContainer">
+  {{range .Gophers}}
+
+    <div class="gopherContainer">
+
+      <div class="gopherImageContainer">
+        <img height="270" src="{{.ImageURI}}">
+      </div>
+
+      <div class="gopherDetailsContainer">
+          <div class="gopherName"><h3><b>{{.Name}}</b></h3></div>
+          <div class="gopherTitle"><span>{{.Title}}</span></div> 
+          <div class="gopherBiodata"><p>{{.Biodata}}</p></div>
+          <div class="gopherStartTime">
+            <p class="standardStartTime">{{.Name}} joined the IGWEB team on <span class="starttime">{{.StartTime}}.</p>
+            <p class="rubyStartTime">That's <span class="starttime">{{.StartTime | rubyformat}}</span> in Ruby date format.</p>
+          </div>
+    </div>
+
+  {{end}}
+</div>
