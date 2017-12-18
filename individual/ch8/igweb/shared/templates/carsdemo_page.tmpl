@@ -1,0 +1,14 @@
+{{ define "pagecontent" }}
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">Model Name</th>
+      <th class="mdl-data-table__cell--non-numeric">Color</th>
+      <th class="mdl-data-table__cell--non-numeric">Manufacturer</th>
+    </tr>
+  </thead>
+  <tbody id="autoTableBody">
+  </tbody>
+</table>
+{{end}}
+{{template "layouts/carsdemo_layout" . }}

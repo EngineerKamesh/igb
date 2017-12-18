@@ -1,0 +1,24 @@
+<div class="productDetailContainer">
+
+	<div class="productDetailImageContainer">
+		<img src="{{.Product.ImagePreviewURI}}">
+	</div>
+
+	<div class="productDetailHeading">
+		<h1>{{.Product.Name}}</h1>
+	</div>
+
+	<div class="productDetailPrice">
+		<span>${{.Product.Price}}</span>
+	</div>
+
+	<div class="productSummaryDetail">
+		{{.Product.SummaryDetail}}
+	</div>
+
+	<div class="pure-controls">
+		<button class="addToCartButton pure-button pure-button-primary" data-sku="{{.Product.SKU}}">Add To Cart</button>
+	</div>
+
+</div>
+

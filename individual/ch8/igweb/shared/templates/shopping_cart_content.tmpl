@@ -1,0 +1,30 @@
+<h1>Shopping Cart</h1>
+
+{{if .Products }}
+{{range .Products}}
+	<div class="productCard">
+		<a href="{{.Route}}">
+		<div class="pricebox"><span>${{.Price}}</span></div>
+		<div class="productCardImageContainer">
+			<img src="{{.ThumbnailPreviewURI}}">
+		</div>
+		</a>
+		<div class="productContainer">
+
+		<h3><b>{{.Name}}</b></h3> 
+
+		<p>{{.Description}}</p> 
+
+		<div class="productQuantity"><span>Quantity: {{.Quantity}}</span></div>
+
+		<div class="pure-controls">
+			<button class="removeFromCartButton pure-button pure-button-primary" data-sku="{{.SKU}}">Remove From Cart</button>
+		</div>
+
+		</div>
+	</div>
+
+{{end}}
+{{else}}
+<h2>Your shopping cart is empty.</h2>
+{{end}}
