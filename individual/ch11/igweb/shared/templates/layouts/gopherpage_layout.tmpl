@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+	{{ template "partials/gopherheader_partial" }}
+	<body>
+		<div class="pageContent" id="primaryContent">
+			{{ template "pagecontent" . }}
+		</div>
+
+		{{if productionmode}}
+		<script type="text/javascript" src="/static/js/client.min.js"></script>
+		{{else}}
+		<script type="text/javascript" src="/js/client.js"></script>
+		{{end}}
+
+	</body>
+</html>

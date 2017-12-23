@@ -1,0 +1,38 @@
+<div class="formContainer">
+<form id="contactForm" name="contactForm" action="/contact" method="POST" class="pure-form pure-form-aligned">
+	<fieldset>
+{{if .Form }}
+		<div class="pure-control-group">
+			<label for="firstName">First Name</label>
+			<input id="firstName" type="text" placeholder="First Name" name="firstName" value="{{.Form.Fields.firstName}}">
+			<span id="firstNameError" class="formError pure-form-message-inline">{{.Form.Errors.firstName}}</span>
+		</div>
+
+		<div class="pure-control-group">
+			<label for="lastName">Last Name</label>
+			<input id="lastName" type="text" placeholder="Last Name" name="lastName" value="{{.Form.Fields.lastName}}">
+			<span id="lastNameError" class="formError pure-form-message-inline">{{.Form.Errors.lastName}}</span>
+		</div>
+
+		<div class="pure-control-group">
+			<label for="email">E-mail Address</label>
+			<input id="email" type="text" placeholder="E-mail Address" name="email" value="{{.Form.Fields.email}}">
+			<span id="emailError" class="formError pure-form-message-inline">{{.Form.Errors.email}}</span>
+		</div>
+
+		<fieldset class="pure-control-group">
+			<textarea id="messageBody" class="pure-input-1-2" placeholder="Enter your message for us here." name="messageBody">{{.Form.Fields.messageBody}}</textarea>
+			<span id="messageBodyError" class="formError pure-form-message-inline">{{.Form.Errors.messageBody}}</span>
+		</fieldset>
+
+		<fieldset class="pure-control-group">
+			<div data-component="cog" id="sensitivityDate"></div>
+		</fieldset>
+
+		<div class="pure-controls">
+			<input id="contactButton" name="contactButton" class="pure-button pure-button-primary" type="submit" value="Contact" />
+		</div>
+{{end}}
+	</fieldset>
+</form>
+</div>

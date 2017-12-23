@@ -1,0 +1,18 @@
+version: '2'
+services:
+  database:
+    image: "redis"
+  webapp:
+    depends_on:
+        - database 
+    build: .
+    ports:
+        - "8080:8080"
+  reverseproxy:
+    depends_on:
+        - webapp
+    image: "nginx"
+    volumes:
+        - ./deployments-config/docker-single-setup/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+        - "80:80"

@@ -1,0 +1,652 @@
+/* Begin Fonts */
+
+@font-face {
+  font-family: Go;
+  src: url('/static/fonts/Go-Regular.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Go Bold";
+  src: url('/static/fonts/Go-Bold.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Go Medium";
+  src: url('/static/fonts/Go-Medium.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Go Mono";
+  src: url('/static/fonts/Go-Mono.ttf');
+  font-weight: bold;
+}
+
+/* End Fonts */
+
+
+div.example {
+
+	margin-left: 12px;
+	margin-bottom: 108px;
+}
+
+
+body {
+	font-family: "Go";
+	font-size: 11pt;
+}
+
+body h1 {
+	font-size: 20pt;
+}
+
+body h2 {
+	font-size: 16pt;
+}
+
+body h3 {
+	font-size: 14pt;
+}
+
+/*
+body img {
+	height: initial !important;
+	width: initial !important;
+}
+*/
+
+#igRacer {
+	min-height: 257px;
+}
+
+#primaryContent {
+	min-height: 630px;
+	margin-left: 14px;
+	margin-bottom: 36px;
+}
+
+#primaryContent h1:first-child {
+	color: green;
+}
+
+#welcomeContainer {
+	padding-top: 3px;
+	text-align: center;
+}
+
+#welcomeMessage {
+	margin-top: 54px;
+}
+
+#copyright_notice {
+	display: block;
+	text-align: center;
+	margin: 0;
+	margin-bottom:9px;
+	width: 100%;
+}
+
+#copyright_notice p {
+	font-size: 9pt;
+}
+
+footer {
+	margin-top: 108px;
+	clear:both;
+}
+
+@-webkit-keyframes greenPulse {
+  from { background-color: #749a02; -webkit-box-shadow: 0 0 36px #91bd09; }
+  50% { background-color: #91bd09; -webkit-box-shadow: 0 0 3px #333; }
+  to { background-color: #749a02; -webkit-box-shadow: 0 0 36px #91bd09; }
+}
+
+
+#livechatContainer, #chatboxCloseControl {
+	cursor: pointer;
+}
+
+#chatboxContainer {
+    position: fixed;
+     bottom: 36px;
+     right: 36px;
+
+
+/*	background-color: #fff !important; */
+	border: 1px solid #000;
+}
+
+.containerPulse {
+  -webkit-animation-name: greenPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+#chatbox {
+	float: right;
+	width: 540px;
+	min-height: 369px;
+	display: block;
+	clear: both;
+	overflow: visible;
+	background-color: white;
+}
+
+.chatboxHeader {
+	background-color: rgb(108,171,63);
+	height: 36px;
+	width: 100%;
+	color: #fff;
+}
+
+.chatboxHeaderTitle {
+	font-size: 14pt;
+	position: relative;
+	top: 9px;
+	margin-left: 18px;
+}
+
+#chatboxCloseControl {
+	position: relative;
+	margin-right: 9px;
+	top: -18px;
+	float: right;
+
+
+
+    display: block;
+    height: 27px;
+    width: 27px;
+    line-height: 27px;
+
+    -moz-border-radius: 30px; /* or 50% */
+    border-radius: 30px; /* or 50% */
+
+    background-color: rgb(63,63,63);
+
+    color: white;
+    text-align: center;
+    font-size: 12pt;
+	font-weight: bold;
+}
+
+.chatSenderName {
+	font-size: 12pt;
+	font-family: arial, helvetica;
+	color:rgb(162,162,162)
+}
+
+.chatboxMessage {
+
+	margin-bottom: 9px;
+
+}
+
+.chatSenderMsg {
+	font-size: 14pt;
+	font-family: arial, helvetica;
+	color: #000;
+}
+
+.chatboxAgentInfo {
+	background-color: rgb(245,245,245);
+	min-height:96px;
+	margin-bottom: 9px;
+	border-top: 1px solid #f0f0f0;
+	border-bottom: 1px solid #f0f0f0;
+	padding-left: 18px;
+	padding-right: 18px;
+
+}
+
+.chatboxAgentName {
+	font-size: 18pt;
+    font-weight: bold;
+    padding-top: 18px;
+	margin-left: 81px;
+}
+
+.chatboxAgentTitle {
+	font-size: 12pt;
+	color:rgb(153,153,153);
+	margin-left: 81px;
+}
+
+.chatboxAgentThumbnail {
+display: inline;
+float:left;
+}
+
+.chatboxAgentThumbnail img {
+	width: 72px;
+}
+
+#chatboxMsgInputContainer {
+	border-top: 1px solid rgb(153,153,153);
+	padding-left: 9px;
+	padding-right: 9px;
+}
+
+.chatboxFooter {
+height: 27px;
+	font-size: 9pt;
+	font-family: arial, helvetica;	
+text-align: center;
+background-color: rgb(245,245,245);
+}
+
+.chatboxFooter a {
+	display: inline-block;
+	position:relative;
+	top: 9px;
+	color: rgb(153,153,153);
+	text-decoration: none
+
+}
+
+#chatboxConversationContainer {
+	height: 306px;
+	max-height: 306px;
+	overflow: auto;
+	padding-left: 18px;
+	padding-right: 18px;
+
+}
+
+#chatboxInputField {
+	border: 0px;
+	width: 99%;
+	height: 45px;
+	outline: none;
+}
+
+
+.productImageThumb img {
+	height: 108px;
+}
+
+
+#navigationBar {
+	margin-left: 18px;
+}
+
+/* Begin Top Bar */
+
+#topbar {
+	clear: both;
+	margin-bottom: 9px;
+}
+
+#logoContainer {
+	margin-top: 6px;
+	margin-left: 14px;
+	width: 207px;
+	display: inline;
+	clear: none;
+}
+
+#logoContainer a {
+	text-decoration: none;
+	color: rgb(79,154,45);
+
+}
+
+#logoContainer span {
+	font-family: "Go Bold";
+	font-weight: bold;
+	font-size: 45px;
+	letter-spacing: 0.01em;
+/*
+    margin: 10px 0;
+*/
+
+}
+
+#siteControlsContainer {
+	float: right;
+	margin-top: 3px;
+	margin-right: 18px;
+}
+
+.topcontrol {
+	display: inline;
+	overflow: hidden;
+}
+
+.topcontrol img {
+	height: 54px;
+	width: 54px;
+
+}
+
+/* End Top Bar */
+
+
+/* Begin Navigation Bar */
+
+#navigationBar {
+	display: block;
+}
+
+
+#navigationBar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+	background-color: rgb(55,177,83);
+	margin-left: -18px;
+}
+
+#navigationBar li {
+    float: left;
+    border-right:1px solid rgb(41,137,80);
+}
+/*
+li:last-child {
+	float: right;
+}
+*/
+
+#navigationBar li a {
+	font-size: 1.0G8em;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#navigationBar li a:hover {
+    background-color: rgb(46,151,71)
+
+}
+
+/* End Navigatio Bar */
+
+
+/* Begin Product Card */
+
+#productsContainer {
+	width: 93%;
+	display: block;
+	margin: auto;
+	clear:both;
+	min-height: 810px;
+}
+
+#productsContainer p {
+	text-align: left;
+}
+
+#productsContainer h3 {
+	margin-bottom: 3px;
+}
+
+.pricebox {
+	width: 81px;
+	height: 40px;
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	background-color: rgb(69,175,88);
+	text-align: center;
+    float: right;  
+    z-index: 3;
+    position: absolute; /*newly added*/
+    right: 0px; /*newly added*/
+    top: 0px;/*newly added*/
+}
+
+.pricebox span {
+	display: inline-block;
+	position: relative;
+	top: 9px;
+}
+
+.productCard {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+	width: 360px;
+	margin-right: 45px;
+	margin-bottom: 45px;
+	overflow: hidden;
+	float: left;
+    border-radius: 5px; /* 5px rounded corners */
+	z-index: 0;
+	position:relative;
+}
+
+.productCardImageContainer {
+	max-height: 180px;
+	overflow: hidden;
+	z-index: 0;
+	position:relative;
+}
+
+.productCard img {
+	width: 100%;
+	z-index: 0;
+	position:relative;
+}
+
+.productCard:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.7);
+}
+
+.productContainer {
+    padding: 2px 16px;
+}
+
+.productQuantity {
+	margin-bottom: 18px;
+	font-weight: bold;
+	color: green;
+}
+
+.addToCartButton, .removeFromCartButton {
+	position: relative;
+	margin-bottom: 18px;
+}
+
+/* End Product Card */
+
+
+/* Begin Product Detail */
+
+#productDetailContainer {
+	width: 93%;
+	display: block;
+	margin: auto;
+	clear:both;
+	min-height: 810px;
+}
+
+.productDetailHeading h1 {
+	font-size: 27pt;
+	color: black !important;
+}
+
+.productDetailImageContainer {
+	height: 702px;
+	overflow: hidden;
+	float: left;
+	margin-right: 54px;
+}
+
+.productDetailImageContainer img {
+	width: 450px;
+}
+
+.productDetailPrice span {
+	font-size: 22pt;
+	font-weight: bold;
+}
+
+.productDetailPrice, .productSummaryDetail {
+	margin-bottom: 18px;
+}
+
+.productSummaryDetail {
+	max-width: 1080px;
+}
+
+/* End Product Detail */
+
+
+/* Begin About Gopher Team */
+
+.humanReadableDate, .humanReadableDate div {
+	clear: none;
+	display: inline;
+}
+
+.humanReadableGopherTime {
+	font-size: 12pt;
+	margin-bottom: 36px;
+}
+
+#gopherTeamContainer {
+	width: 93%;
+	display: block;
+	margin: auto;
+	clear:both;
+	min-height: 810px;
+	max-width: 981px;
+	min-width: 900px;
+}
+
+.gopherImageContainer {
+	height: 100%;
+	overflow: hidden;
+	margin-right: 9px;
+	margin-top: 36px;
+	margin-bottom: 9px;
+	clear: none;
+	float: left;
+}
+
+.gopherContainer {
+	display: block;
+	clear: both;
+	margin-bottom: 36px;
+	overflow: visible;
+}
+
+.gopherDetailsContainer {
+	font-family: "Go";
+	position: relative;
+	top: 0px;
+	padding-top: 9px;
+	max-width: 603px;
+	float: right;
+}
+
+
+.gopherName {
+	font-family: "Go Bold";
+}
+
+.gopherName h3 {
+	margin-bottom: 9px;
+	font-size: 22pt;
+
+}
+
+.gopherTitle {
+	font-family: "Go Medium";
+	font-size: 16pt;
+}
+
+.gopherBiodata, .gopherStartTime {
+}
+
+.gopherBiodata p {
+	text-align: left;
+	font-size: 14pt;
+}
+
+.gopherStartTime p {
+	text-align: left;
+	font-size: 12pt;
+}
+
+.starttime {
+	color: green;
+}
+
+.standardStartTime, .rubyStartTime {
+	padding: 0px;
+	margin-bottom: 9px;
+}
+
+/* End About Gopher Team */
+
+
+
+
+
+
+/* Begin Contact Form */
+
+#contactForm  {
+	margin-left: 108px;
+}
+
+#contactForm input[type="text"] {
+	width: 258px;
+}
+
+#contactForm #messageBody {
+	width: 423px;
+	height: 225px;
+}
+
+.formError {
+	color: #ff0000;
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+#contactForm .pure-controls {
+	margin: 0px;
+	margin-left: 144px;
+}
+
+/* End Contact Form */
+
+/* Begin Index */
+
+#carousel {
+	margin:auto;
+	width: 1080px;
+	height: 630px;
+	overflow: hidden;
+}
+
+.liveclockTime {
+	font-size: 14pt;
+}
+
+/* End Index */
+
+
+/* Begin Overrides */
+
+.tns-visually-hidden {
+	display: none !important;
+}
+
+/* End Overrides */
+
+/* Begin Chat */
+
+.disconnected {
+	background-color: red !important;
+}
+
+
+/* End Chat */

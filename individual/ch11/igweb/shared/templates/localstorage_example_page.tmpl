@@ -1,0 +1,33 @@
+{{ define "pagecontent" }}
+
+<h1>LocalStorage Demo</h1>
+
+		<div id="inputFormContainer">
+			<form class="pure-form">
+			<fieldset class="pure-group" style="min-height: 272px">
+			<div id="storageContents">
+				<dl id="itemList">
+				</dl>
+			</div>
+			</fieldset>
+
+			<fieldset class="pure-control-group">
+			<label for="messageInput">Key: </label>
+			<input id="itemKey" type="text" value="" />
+			<label for="messageInput">Value: </label>
+			<input id="itemValue" type="text" value="" />
+
+			</fieldset>
+
+			<fieldset class="pure-control-group">
+			</fieldset>
+
+			<fieldset class="pure-group">
+				<button id="saveButton" type="button" class="pure-button pure-button-primary">Save</button>
+				<button id="clearAllButton" type="button" class="pure-button pure-button-primary">Clear All</button>
+			</fieldset>
+			</form>
+		</div>
+
+{{end}}
+{{template "layouts/localstorage_layout" . }}
