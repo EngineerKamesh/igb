@@ -35,4 +35,4 @@ A list of topics covered in the book, along with some animated gif previews, [is
 
 ### Errata List
 
-[A list of errata](https://github.com/EngineerKamesh/igb/Errata.md) will be maintained to inform readers of errors and typos found in the book.
+[A list of errata](https://github.com/EngineerKamesh/igb/blob/master/Errata.md) will be maintained to inform readers of errors and typos found in the book.
