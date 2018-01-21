@@ -32,3 +32,7 @@ Alternatively, you may install IGWEB on your system, using the [standalone instr
 ### Topics Covered
 
 A list of topics covered in the book, along with some animated gif previews, [is available here](Previews.md).
+
+### Errata List
+
+[A list of errata](https://github.com/EngineerKamesh/igb/Errata.md) will be maintained to inform readers of errors and typos found in the book.
