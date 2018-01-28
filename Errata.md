@@ -14,6 +14,10 @@ This page contains the errata list for the Isomorphic Go book. If you come acros
 
 * In the "Thanks to all family members" sub-section, the initials of Sri. P.K.C. Krishnan (Financial Advisor, Chartered Accountant, Pune) are printed incorrectly. His name should be written as Sri. P.K.C. Krishnan.
 
+## Chapter 1
+
+* The link to Charlie Robbin's blog post, *Scaling Isomorphic JavaScript Code*, provided on page 35, no longer works since the Nodejitsu website has been shut down. An archived version of the article can be found here: [http://archive.is/ZrVMc](http://archive.is/ZrVMc)
+
 ## Chapter 9
 
 * Page 353, 1st paragraph, it should read "Figure 9.8 is a screenshot of the live clock cogs displayed on the homepage."
