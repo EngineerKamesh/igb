@@ -18,6 +18,11 @@ This page contains the errata list for the Isomorphic Go book. If you come acros
 
 * The link to Charlie Robbin's blog post, *Scaling Isomorphic JavaScript Code*, provided on page 35, no longer works since the Nodejitsu website has been shut down. An archived version of the article can be found here: [http://archive.is/ZrVMc](http://archive.is/ZrVMc)
 
+## Chapter 3
+
+On page 83, there is a typo in the second line of code for the GopherJS example to change the CSS style property of an element. It should be:
+`element := js.Get("document").Call("getElementById", "primaryContent")`
+
 ## Chapter 9
 
 * Page 353, 1st paragraph, it should read "Figure 9.8 is a screenshot of the live clock cogs displayed on the homepage."
