@@ -1,4 +1,4 @@
-FROM golang
+FROM golang:1.10
 MAINTAINER Kamesh Balasubramanian kamesh@kamesh.com
 
 # Declare required environment variables
