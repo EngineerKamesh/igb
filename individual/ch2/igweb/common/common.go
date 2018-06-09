@@ -3,7 +3,7 @@ package common
 import (
 	"github.com/EngineerKamesh/igb/igweb/common/datastore"
 	"github.com/gorilla/sessions"
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 )
 
 type Env struct {

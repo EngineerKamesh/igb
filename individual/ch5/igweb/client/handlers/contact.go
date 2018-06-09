@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/EngineerKamesh/igb/igweb/client/common"
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 )
 
 func ContactHandler(env *common.Env) isokit.Handler {

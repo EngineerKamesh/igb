@@ -15,7 +15,7 @@ import (
 	"github.com/EngineerKamesh/igb/igweb/shared/templatefuncs"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 )
 
 var WebAppRoot string

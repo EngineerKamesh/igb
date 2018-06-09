@@ -9,7 +9,7 @@ import (
 	"github.com/EngineerKamesh/igb/igweb/shared/cogs/notify"
 	"github.com/EngineerKamesh/igb/igweb/shared/models"
 	"github.com/EngineerKamesh/igb/igweb/shared/templatedata"
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 	"honnef.co/go/js/dom"
 	"honnef.co/go/js/xhr"
 )

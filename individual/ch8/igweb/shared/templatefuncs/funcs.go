@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 )
 
 func RubyDate(t time.Time) string {

@@ -10,7 +10,7 @@ import (
 	"github.com/EngineerKamesh/igb/igweb/client/common"
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/gopherjs/websocket/websocketjs"
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 	"honnef.co/go/js/dom"
 	"honnef.co/go/js/xhr"
 )

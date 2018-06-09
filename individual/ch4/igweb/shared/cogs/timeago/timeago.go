@@ -6,7 +6,7 @@ import (
 	"time"
 
 	humanize "github.com/dustin/go-humanize"
-	"github.com/uxtoolkit/cog"
+	"go.isomorphicgo.org/uxtoolkit/cog"
 )
 
 var cogType reflect.Type

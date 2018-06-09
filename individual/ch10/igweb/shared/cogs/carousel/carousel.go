@@ -5,7 +5,7 @@ import (
 	"reflect"
 
 	"github.com/gopherjs/gopherjs/js"
-	"github.com/uxtoolkit/cog"
+	"go.isomorphicgo.org/uxtoolkit/cog"
 )
 
 const (

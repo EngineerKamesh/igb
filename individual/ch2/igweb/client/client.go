@@ -5,7 +5,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 	"honnef.co/go/js/dom"
 
 	"github.com/EngineerKamesh/igb/igweb/client/carsdemo"

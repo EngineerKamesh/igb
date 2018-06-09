@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/EngineerKamesh/igb/igweb/common"
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 )
 
 func AboutHandler(env *common.Env) http.Handler {

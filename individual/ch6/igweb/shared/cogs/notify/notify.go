@@ -7,7 +7,7 @@ import (
 	"honnef.co/go/js/dom"
 
 	"github.com/gopherjs/gopherjs/js"
-	"github.com/uxtoolkit/cog"
+	"go.isomorphicgo.org/uxtoolkit/cog"
 )
 
 var cogType reflect.Type

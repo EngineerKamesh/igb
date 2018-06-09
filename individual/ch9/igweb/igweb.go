@@ -22,7 +22,7 @@ import (
 	"github.com/EngineerKamesh/igb/igweb/shared/cogs/timeago"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 )
 
 var WebAppRoot string

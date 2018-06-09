@@ -9,7 +9,7 @@ import (
 	"github.com/EngineerKamesh/igb/igweb/common"
 	"github.com/EngineerKamesh/igb/igweb/shared/models"
 	"github.com/EngineerKamesh/igb/igweb/shared/templatedata"
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 )
 
 func ShoppingCartHandler(env *common.Env) http.Handler {

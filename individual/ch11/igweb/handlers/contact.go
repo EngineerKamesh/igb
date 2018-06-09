@@ -7,7 +7,7 @@ import (
 	"github.com/EngineerKamesh/igb/igweb/shared/forms"
 	"github.com/EngineerKamesh/igb/igweb/shared/templatedata"
 	"github.com/EngineerKamesh/igb/igweb/submissions"
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 )
 
 func ContactHandler(env *common.Env) http.Handler {

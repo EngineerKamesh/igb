@@ -2,7 +2,7 @@ package forms
 
 import (
 	"github.com/EngineerKamesh/igb/igweb/shared/validate"
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 )
 
 type ContactForm struct {

@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/uxtoolkit/cog"
+	"go.isomorphicgo.org/uxtoolkit/cog"
 )
 
 var cogType reflect.Type

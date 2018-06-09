@@ -8,7 +8,7 @@ import (
 	"github.com/EngineerKamesh/igb/igweb/shared/cogs/carousel"
 	"github.com/EngineerKamesh/igb/igweb/shared/cogs/liveclock"
 	"github.com/EngineerKamesh/igb/igweb/shared/templatedata"
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 )
 
 func IndexHandler(env *common.Env) isokit.Handler {

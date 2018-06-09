@@ -6,7 +6,7 @@ import (
 	"github.com/EngineerKamesh/igb/igweb/common"
 	"github.com/EngineerKamesh/igb/igweb/shared/templatedata"
 	"github.com/gorilla/mux"
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 )
 
 func ProductDetailHandler(env *common.Env) http.Handler {

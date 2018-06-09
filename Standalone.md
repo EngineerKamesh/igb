@@ -36,11 +36,11 @@ You should see the GopherJS version.
 
 
 ### Install IsoKit
-`go get -u github.com/isomorphicgo/isokit`
+`go get -u go.isomorphicgo.org/go/isokit`
 
 
 ### Install UXToolkit
-`go get -u github.com/uxtoolkit/cog`
+`go get -u go.isomorphicgo.org/uxtoolkit/cog`
 
 
 ### Install the source code for the book

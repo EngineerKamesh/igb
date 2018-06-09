@@ -12,7 +12,7 @@ import (
 	"github.com/EngineerKamesh/igb/igweb/handlers"
 	"github.com/EngineerKamesh/igb/igweb/shared/templatefuncs"
 	"github.com/gorilla/mux"
-	"github.com/isomorphicgo/isokit"
+	"go.isomorphicgo.org/go/isokit"
 )
 
 var WebAppRoot string
